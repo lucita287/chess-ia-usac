@@ -30,13 +30,7 @@ public class image_drive {
      */
     public image_drive(){
 
-        Image i1=new ImageIcon(this.getClass().getResource("image/no_seleccionado.jpg")).getImage();
-        no_seleccionado=new ImageIcon(i1.getScaledInstance(variable.ANCHO,variable.ALTO, Image.SCALE_DEFAULT));
-
-        i1=new ImageIcon(this.getClass().getResource("image/seleccionado.jpg")).getImage();
-        seleccionado=new ImageIcon(i1.getScaledInstance(variable.ANCHO,variable.ALTO, Image.SCALE_DEFAULT));
-
-        i1=new ImageIcon(this.getClass().getResource("image/negro.jpg")).getImage();
+        Image i1=new ImageIcon(this.getClass().getResource("image/negro.jpg")).getImage();
         negro=new ImageIcon(i1.getScaledInstance(variable.ANCHO,variable.ALTO, Image.SCALE_DEFAULT));
 
         i1=new ImageIcon(this.getClass().getResource("image/blanco.jpg")).getImage();
