@@ -92,7 +92,7 @@ public class pieza extends JLabel{
         setIcon(imagen);
         setText(nombre);
         setOpaque(!variable.FONDO);
-        setBounds(x,y,variable.ANCHO+variable.DP_ANCHO, variable.ALTO+variable.DP_ALTO);
+        setBounds(x,y,variable.PIEZA_ANCHO, variable.PIEZA_ALTO);
         //setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gui.tablero.add(this);
 
