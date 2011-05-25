@@ -12,7 +12,7 @@ import gui.view;
  *
  * @author Daniel
  */
-public class piezas {
+public class piezas_jugador {
 
     private peon peon[];
     private torre torre[];
@@ -22,8 +22,9 @@ public class piezas {
     private rey rey;
     private boolean color;
     private view gui;
+    private npiezas_jugador vivos;
     
-    public piezas(boolean color,view gui, boolean posicion){
+    public piezas_jugador(boolean color,view gui, boolean posicion){
         int s1=0;
         int s2=1;
         int pos=0;
@@ -60,6 +61,7 @@ public class piezas {
 
         reina=new reina(color,gui,3,s1);
         rey=new rey(color,gui,4,s1);
+        vivos=new npiezas_jugador();
     }
 
     /**
@@ -154,6 +156,7 @@ public void IsPieza(int pieza,int x, int y){
             if(peon[i].isVivo()){
             gui.AgregarMuerto(peon[i].isColor(), peon[i].getIcon());
             peon[i].setVivo(variable.MUERTA);
+            vivos.removePeon();
             }
             //System.out.println("Muere Peon "+i+" "+this.ColorFicha());
             
@@ -165,6 +168,7 @@ public void IsPieza(int pieza,int x, int y){
             if(torre[i].isVivo()){
             gui.AgregarMuerto(torre[i].isColor(), torre[i].getIcon());
             torre[i].setVivo(variable.MUERTA);
+            vivos.removeTorre();
             }
             //System.out.println("Muere Torre "+i+" "+this.ColorFicha());
             break;
@@ -173,6 +177,7 @@ public void IsPieza(int pieza,int x, int y){
             if(caballo[i].isVivo()){
             gui.AgregarMuerto(caballo[i].isColor(), caballo[i].getIcon());
             caballo[i].setVivo(variable.MUERTA);
+            vivos.removeCaballo();
             }
             //System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
 
@@ -182,6 +187,7 @@ public void IsPieza(int pieza,int x, int y){
             if(alfil[i].isVivo()){
             gui.AgregarMuerto(alfil[i].isColor(), alfil[i].getIcon());
             alfil[i].setVivo(variable.MUERTA);
+            vivos.removeAlfil();
             }
             //System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
             break;
@@ -191,6 +197,7 @@ public void IsPieza(int pieza,int x, int y){
             if(reina.isVivo()){
             gui.AgregarMuerto(reina.isColor(), reina.getIcon());
             reina.setVivo(variable.MUERTA);
+            vivos.removeReina();
             }
             //System.out.println("Muere Reina "+this.ColorFicha());
 
@@ -200,6 +207,7 @@ public void IsPieza(int pieza,int x, int y){
             if(rey.isVivo()){
             rey.setVivo(variable.MUERTA);
             gui.AgregarMuerto(rey.isColor(), rey.getIcon());
+            vivos.removeRey();
             }
             //System.out.println("Muere Rey "+this.ColorFicha());
             gui.Finish(this.ColorFicha());
