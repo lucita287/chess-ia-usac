@@ -81,4 +81,13 @@ public class npiezas_jugador {
         this.rey = rey-1;
         }
     }
+
+    public void Ver(){
+        System.out.println("PEON(ES): "+peon);
+        System.out.println("TORRE(S): "+torre);
+        System.out.println("ALFIL(ES): "+alfil);
+        System.out.println("CABALLO(S): "+caballo);
+        System.out.println("REINA: "+reina);
+        System.out.println("REY: "+rey);
+    }
 }
