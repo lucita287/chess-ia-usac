@@ -22,7 +22,7 @@ public class piezas_jugador {
     private rey rey;
     private boolean color;
     private view gui;
-    private npiezas_jugador vivos;
+    public npiezas_jugador vivos;
     
     public piezas_jugador(boolean color,view gui, boolean posicion){
         int s1=0;
