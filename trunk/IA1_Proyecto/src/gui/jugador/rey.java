@@ -18,7 +18,7 @@ public class rey extends pieza{
 
     public rey(boolean color, view gui, int x, int y) {
         image_drive image_drive=new image_drive();
-        super.setPieza(color,variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getRey(color),gui);
+        super.setPieza(color,'R',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getRey(color),gui);
 
     }
  

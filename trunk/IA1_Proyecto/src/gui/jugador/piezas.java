@@ -131,10 +131,26 @@ public class piezas {
         return torre;
     }
 
-public void IsPieza(int x, int y){
+/**
+     *  LETRA DE PIEZAS
+     *  Rey = R
+        Dama = D
+        Torre = T1 y T2
+        Caballo = C1 y C2
+        Alfil = A1 y A2
+        Peón = P1, P2...P8
+ *
+ * @param pieza
+ * @param x
+ * @param y
+ */
+public void IsPieza(int pieza,int x, int y){
     //System.out.print("\n"+x+"-"+y);
+    if(pieza=='P'){
+          return;
+        }else{
     for(int i=0;i<8;i++){
-        if((peon[i].casillax==x)&&(peon[i].casillay==y)){
+        if(((peon[i].casillax==x))&&(peon[i].casillay==y)){
             if(peon[i].isVivo()){
             gui.AgregarMuerto(peon[i].isColor(), peon[i].getIcon());
             peon[i].setVivo(variable.MUERTA);
@@ -188,6 +204,8 @@ public void IsPieza(int x, int y){
             //System.out.println("Muere Rey "+this.ColorFicha());
             gui.Finish(this.ColorFicha());
             
+        }
+
         }
 }
 

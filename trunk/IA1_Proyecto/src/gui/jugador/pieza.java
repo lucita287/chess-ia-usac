@@ -27,6 +27,7 @@ public class pieza extends JLabel{
     private int origeny;
     private Icon imagen;
     private String nombre;
+    private int pieza;
     private view gui;
     private ArrayList<xypieza> moviemientos= new ArrayList();
     private boolean inDrag = false;
@@ -44,7 +45,8 @@ public class pieza extends JLabel{
  * @param nombre
  * @param gui
  */
-    public void setPieza(boolean color, boolean estado, int x, int y, Icon imagen, view gui) {
+    public void setPieza(boolean color, int pieza, boolean estado, int x, int y, Icon imagen, view gui) {
+        this.pieza=pieza;
         this.color = color;
         this.viva = estado;
         this.x = x;
@@ -381,10 +383,10 @@ public void MoverXY(int letra, int numero){
             if(moviemientos.get(i).getX()==(x)&&
                     moviemientos.get(i).getY()==(y)){
                 if(gui.turno){
-                    gui.jugador2.IsPieza(x, y);
+                    gui.jugador2.IsPieza(this.pieza,x, y);
                     return true;
                 }else{
-                    gui.jugador1.IsPieza(x, y);
+                    gui.jugador1.IsPieza(this.pieza,x, y);
                     return true;                    
                 }
             }
