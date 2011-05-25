@@ -25,7 +25,7 @@ public class reina extends pieza{
     @Override
    public void PosiblesMovimientos() {
         this.getMov().clear();
-
+         System.out.println(this.getOrigenx()+" "+this.getOrigeny());
          for(int i=0;i<8;i++){
             if((i!=this.getOrigenx())){
             this.getMov().add(new xypieza(i,this.getOrigeny()));
@@ -33,11 +33,18 @@ public class reina extends pieza{
             if((i!=this.getOrigeny())){
             this.getMov().add(new xypieza(this.getOrigenx(),i));
             }
-        
-            this.getMov().add(new xypieza(this.getOrigenx()+i,this.getOrigeny()+i));
-            this.getMov().add(new xypieza(this.getOrigenx()+i,this.getOrigeny()-i));
-            this.getMov().add(new xypieza(this.getOrigenx()-i,this.getOrigeny()+i));
-            this.getMov().add(new xypieza(this.getOrigenx()-i,this.getOrigeny()-i));
+
+            if(i!=0){
+            int a1=this.getOrigenx()+i;
+            int a2=this.getOrigenx()-i;
+            int b1=this.getOrigeny()+i;
+            int b2=this.getOrigeny()-i;
+            this.getMov().add(new xypieza(a1,b1));
+            this.getMov().add(new xypieza(a1,b2));
+            this.getMov().add(new xypieza(a2,b1));
+            this.getMov().add(new xypieza(a2,b2));
+            }
+            
         }
         
 

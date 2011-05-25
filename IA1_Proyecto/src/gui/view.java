@@ -17,6 +17,7 @@ import gui.resources.variable;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 
 public class view extends javax.swing.JFrame {
@@ -26,7 +27,7 @@ public class view extends javax.swing.JFrame {
     private JLabel muertab[][]=new JLabel[4][4];
     private int m_negra=0, m_blanca=0;
     private image_drive image_drive=new image_drive();
-    public boolean turno;
+    public boolean turno, fin=false;
     public piezas jugador1;
     public piezas jugador2;
     
@@ -73,7 +74,11 @@ public class view extends javax.swing.JFrame {
         numeros = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        COLOR = new javax.swing.JMenu();
+        RBLANCAS = new javax.swing.JCheckBoxMenuItem();
+        RNEGRAS = new javax.swing.JCheckBoxMenuItem();
+        reiniciar = new javax.swing.JMenuItem();
+        rendirse = new javax.swing.JMenuItem();
         salir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -91,7 +96,7 @@ public class view extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
 
-        estado.setFont(new java.awt.Font("Tahoma", 1, 24));
+        estado.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png"))); // NOI18N
         estado.setText("Blancas");
@@ -175,13 +180,43 @@ public class view extends javax.swing.JFrame {
 
         jMenu1.setText("Opciones");
 
-        jMenuItem3.setText("Reiniciar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+        COLOR.setText("Color de Piezas");
+        COLOR.setEnabled(false);
+
+        RBLANCAS.setSelected(true);
+        RBLANCAS.setText("Blancas");
+        RBLANCAS.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                RBLANCASStateChanged(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        COLOR.add(RBLANCAS);
+
+        RNEGRAS.setText("Negras");
+        RNEGRAS.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                RNEGRASStateChanged(evt);
+            }
+        });
+        COLOR.add(RNEGRAS);
+
+        jMenu1.add(COLOR);
+
+        reiniciar.setText("Reiniciar");
+        reiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Reiniciar(evt);
+            }
+        });
+        jMenu1.add(reiniciar);
+
+        rendirse.setText("Rendirse");
+        rendirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rendirseActionPerformed(evt);
+            }
+        });
+        jMenu1.add(rendirse);
 
         salir.setText("Salir");
         salir.setText("Salir");
@@ -216,19 +251,38 @@ public class view extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-            Reiniciar();
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    public void Finish(String txt){
+        Object[] options = {"Si",
+                            "No"};
+        int n = JOptionPane.showOptionDialog(null,
+            "JAQUE MATE\n"
+            +"Han Perdido las Piezas "+txt
+            + "\n\nDesea Salirse del Juego?\n",
+            "FIN DEL JUEGO!!!",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
+            null,     //do not use a custom Icon
+            options,  //the titles of buttons
+            options[0]); //default button title
+
+        if(n==0){
+            System.exit(1);
+        }
+        COLOR.setEnabled(true);
+        fin=true;
+    }
 
     public void Reiniciar(){
+        COLOR.setEnabled(false);
         fondo=new JLabel[8][8];
         muertan=new JLabel[4][4];
         muertab=new JLabel[4][4];
         m_negra=0;
         m_blanca=0;
+        fin=false;
         tablero.removeAll();
-        mblancas.removeAll();
         mnegras.removeAll();
+        mblancas.removeAll();
         numeros = new javax.swing.JPanel();
         numeros.setPreferredSize(new java.awt.Dimension(20, 80));
         numeros.setLayout(new java.awt.GridLayout(9, 0));
@@ -236,21 +290,58 @@ public class view extends javax.swing.JFrame {
         letras.setLayout(new java.awt.GridLayout(1, 8));
         Dibujar();
         tablero.updateUI();
-        mnegras.updateUI();
-        mblancas.updateUI();
         this.repaint();
+        Turno();
     }
     
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_salirActionPerformed
 
+    private void Reiniciar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reiniciar
+        Reiniciar();
+    }//GEN-LAST:event_Reiniciar
+
+    private void RBLANCASStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RBLANCASStateChanged
+        RNEGRAS.setSelected(false);
+        turno=variable.BLANCA;
+        Turno();
+    }//GEN-LAST:event_RBLANCASStateChanged
+
+    private void RNEGRASStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RNEGRASStateChanged
+        RBLANCAS.setSelected(false);
+        turno=variable.NEGRA;
+        Turno();
+    }//GEN-LAST:event_RNEGRASStateChanged
+
+    private void rendirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rendirseActionPerformed
+     if(turno){
+            Finish("Blancas");
+        }else{
+            Finish("Negras");
+        }
+
+    }//GEN-LAST:event_rendirseActionPerformed
+
+    public void Turno(){
+         if(turno){
+            estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+            estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
+            estado.setText("Blancas");
+            estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+            }else{
+            estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
+            estado.setText("Negras");
+            estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+            }
+    }
  /**
  *
  */
 private void Dibujar(){
         DibujarPiezas();
-        this.turno=variable.BLANCA;
+        turno=RBLANCAS.isSelected();
         DibujarTablero();
         DibujarMuertas();
         tablero.updateUI();
@@ -370,14 +461,17 @@ public void AgregarMuerto(boolean color, Icon pieza){
                 m_negra++;
     }
 }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu COLOR;
+    private javax.swing.JCheckBoxMenuItem RBLANCAS;
+    private javax.swing.JCheckBoxMenuItem RNEGRAS;
     public javax.swing.JLabel estado;
     public javax.swing.JLabel estado1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
@@ -386,6 +480,8 @@ public void AgregarMuerto(boolean color, Icon pieza){
     public javax.swing.JPanel mnegras;
     private javax.swing.JSplitPane muertas;
     private javax.swing.JPanel numeros;
+    private javax.swing.JMenuItem reiniciar;
+    private javax.swing.JMenuItem rendirse;
     private javax.swing.JMenuItem salir;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JSplitPane split1;

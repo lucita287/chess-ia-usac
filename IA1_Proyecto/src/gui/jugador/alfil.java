@@ -27,11 +27,15 @@ public class alfil extends pieza{
         this.getMov().clear();
                 
         this.getMov().clear();
-        for(int i=0;i<8;i++){
-            this.getMov().add(new xypieza(this.getOrigenx()+i,this.getOrigeny()+i));
-            this.getMov().add(new xypieza(this.getOrigenx()+i,this.getOrigeny()-i));
-            this.getMov().add(new xypieza(this.getOrigenx()-i,this.getOrigeny()+i));
-            this.getMov().add(new xypieza(this.getOrigenx()-i,this.getOrigeny()-i));
+        for(int i=1;i<8;i++){
+            int a1=this.getOrigenx()+i;
+            int a2=this.getOrigenx()-i;
+            int b1=this.getOrigeny()+i;
+            int b2=this.getOrigeny()-i;
+            this.getMov().add(new xypieza(a1,b1));
+            this.getMov().add(new xypieza(a1,b2));
+            this.getMov().add(new xypieza(a2,b1));
+            this.getMov().add(new xypieza(a2,b2));
         }
    }
 }
