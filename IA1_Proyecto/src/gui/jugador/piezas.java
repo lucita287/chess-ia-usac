@@ -185,7 +185,7 @@ public void IsPieza(int x, int y){
             rey.setVivo(variable.MUERTA);
             gui.AgregarMuerto(rey.isColor(), rey.getIcon());
             }
-            System.out.println("Muere Rey "+this.ColorFicha());
+            //System.out.println("Muere Rey "+this.ColorFicha());
             gui.Finish(this.ColorFicha());
             
         }
