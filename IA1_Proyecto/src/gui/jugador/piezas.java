@@ -99,24 +99,24 @@ public void IsPieza(int x, int y){
     for(int i=0;i<8;i++){
         if((peon[i].casillax==x)&&(peon[i].casillay==y)){
             peon[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Peon"+i+" "+this.ColorFicha());
+            System.out.println("Muere Peon "+i+" "+this.ColorFicha());
             break;
         }
     }
     for(int i=0;i<2;i++){
         if((torre[i].casillax==x)&&(torre[i].casillay==y)){
             torre[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Torre"+i+" "+this.ColorFicha());
+            System.out.println("Muere Torre "+i+" "+this.ColorFicha());
             break;
         }
         if((caballo[i].casillax==x)&&(caballo[i].casillay==y)){
             caballo[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Caballo"+i+" "+this.ColorFicha());
+            System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
             break;
         }
         if((alfil[i].casillax==x)&&(alfil[i].casillay==y)){
             alfil[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Alfil"+i+" "+this.ColorFicha());
+            System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
             break;
         }
     }

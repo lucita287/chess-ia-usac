@@ -26,7 +26,7 @@ public class main {
             laf_config.setCurrentButtonShaper("org.jvnet.substance.button.StandardButtonShaper");
 
             try {
-            UIManager.setLookAndFeel(laf_config.LookAndFeel());
+           // UIManager.setLookAndFeel(laf_config.LookAndFeel());
             } catch (Exception e) {
               System.out.println("Look And Feel Failed to Initialize");
               System.out.println(e.toString());

@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 public class view extends javax.swing.JFrame {
 
     private JLabel fondo[][]=new JLabel[8][8];
+    private JLabel muerta[][]=new JLabel[4][4];
     private image_drive image_drive=new image_drive();
     public boolean turno;
     public piezas jugador1;
@@ -28,7 +29,7 @@ public class view extends javax.swing.JFrame {
     /** Creates new form view */
     public view() {
         initComponents();
-        setBounds(new java.awt.Rectangle(300, 0, 685, 770));
+        setBounds(new java.awt.Rectangle(150, 0, 1050, 770));
         Dibujar();
           if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -53,13 +54,19 @@ public class view extends javax.swing.JFrame {
     private void initComponents() {
 
         tablero_principal = new javax.swing.JSplitPane();
-        numeros = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         estado = new javax.swing.JLabel();
         split1 = new javax.swing.JSplitPane();
         letras = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
         tablero = new javax.swing.JPanel();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        jSplitPane3 = new javax.swing.JSplitPane();
+        estado1 = new javax.swing.JLabel();
+        muertas = new javax.swing.JSplitPane();
+        mnegras = new javax.swing.JPanel();
+        mblancas = new javax.swing.JPanel();
+        numeros = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -75,11 +82,7 @@ public class view extends javax.swing.JFrame {
         tablero_principal.setBorder(null);
         tablero_principal.setEnabled(false);
         tablero_principal.setMinimumSize(new java.awt.Dimension(110, 55));
-
-        numeros.setMinimumSize(new java.awt.Dimension(20, 670));
-        numeros.setPreferredSize(new java.awt.Dimension(20, 670));
-        numeros.setLayout(new java.awt.GridLayout(9, 0));
-        tablero_principal.setLeftComponent(numeros);
+        tablero_principal.setPreferredSize(new java.awt.Dimension(900, 700));
 
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
@@ -100,7 +103,7 @@ public class view extends javax.swing.JFrame {
         split1.setDoubleBuffered(true);
         split1.setEnabled(false);
         split1.setMinimumSize(new java.awt.Dimension(640, 650));
-        split1.setPreferredSize(new java.awt.Dimension(640, 650));
+        split1.setPreferredSize(new java.awt.Dimension(650, 650));
 
         letras.setMinimumSize(new java.awt.Dimension(640, 5));
         letras.setPreferredSize(new java.awt.Dimension(640, 5));
@@ -121,7 +124,50 @@ public class view extends javax.swing.JFrame {
 
         jSplitPane1.setBottomComponent(split1);
 
-        tablero_principal.setRightComponent(jSplitPane1);
+        tablero_principal.setLeftComponent(jSplitPane1);
+
+        jSplitPane2.setDoubleBuffered(true);
+        jSplitPane2.setEnabled(false);
+
+        jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+
+        estado1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        estado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        estado1.setText("Piezas Muertas");
+        estado1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        estado1.setMaximumSize(new java.awt.Dimension(320, 35));
+        estado1.setMinimumSize(new java.awt.Dimension(100, 35));
+        estado1.setOpaque(true);
+        estado1.setPreferredSize(new java.awt.Dimension(320, 35));
+        jSplitPane3.setTopComponent(estado1);
+
+        muertas.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        muertas.setDoubleBuffered(true);
+        muertas.setMinimumSize(new java.awt.Dimension(320, 670));
+        muertas.setPreferredSize(new java.awt.Dimension(320, 670));
+
+        mnegras.setMinimumSize(new java.awt.Dimension(640, 640));
+        mnegras.setPreferredSize(new java.awt.Dimension(640, 320));
+        mnegras.setLayout(null);
+        muertas.setTopComponent(mnegras);
+        mnegras.getAccessibleContext().setAccessibleParent(muertas);
+
+        mblancas.setMinimumSize(new java.awt.Dimension(640, 640));
+        mblancas.setPreferredSize(new java.awt.Dimension(640, 320));
+        mblancas.setLayout(null);
+        muertas.setBottomComponent(mblancas);
+
+        jSplitPane3.setBottomComponent(muertas);
+
+        jSplitPane2.setRightComponent(jSplitPane3);
+
+        numeros.setMinimumSize(new java.awt.Dimension(20, 670));
+        numeros.setPreferredSize(new java.awt.Dimension(20, 670));
+        numeros.setLayout(new java.awt.GridLayout(9, 0));
+        jSplitPane2.setLeftComponent(numeros);
+
+        tablero_principal.setRightComponent(jSplitPane2);
+        jSplitPane2.getAccessibleContext().setAccessibleParent(tablero_principal);
 
         jMenu1.setText("Opciones");
 
@@ -155,11 +201,11 @@ public class view extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tablero_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+            .addComponent(tablero_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 866, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tablero_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+            .addComponent(tablero_principal, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
         );
 
         pack();
@@ -172,6 +218,8 @@ public class view extends javax.swing.JFrame {
 
     public void Reiniciar(){
         tablero.removeAll();
+        mblancas.removeAll();
+        mnegras.removeAll();
         numeros = new javax.swing.JPanel();
         numeros.setPreferredSize(new java.awt.Dimension(20, 80));
         numeros.setLayout(new java.awt.GridLayout(9, 0));
@@ -179,6 +227,8 @@ public class view extends javax.swing.JFrame {
         letras.setLayout(new java.awt.GridLayout(1, 8));
         Dibujar();
         tablero.updateUI();
+        mnegras.updateUI();
+        mblancas.updateUI();
         this.repaint();
     }
     
@@ -193,7 +243,10 @@ private void Dibujar(){
         DibujarPiezas();
         this.turno=variable.BLANCA;
         DibujarTablero();
+        DibujarMuertas();
         tablero.updateUI();
+        mnegras.updateUI();
+        mblancas.updateUI();
         this.repaint();
 }
 /**
@@ -206,7 +259,27 @@ private void DibujarPiezas(){
     jugador2=new piezas(variable.NEGRA,this,variable.ARRIBA);
 }
 
-    private void DibujarTablero(){
+ private void DibujarMuertas(){
+
+        for(int i=0;i<4;i++){
+
+            for(int j=0;j<4;j++){
+                muerta[j][i]=new JLabel("");
+                muerta[j][i].setBounds((j*variable.ALTO),(i*variable.ANCHO),variable.ANCHO,variable.ALTO);
+                muerta[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                muerta[j][i].setIcon(image_drive.getNegro());
+                mnegras.add(muerta[j][i]);
+                muerta[j][i]=new JLabel("");
+                muerta[j][i].setBounds((j*variable.ALTO),(i*variable.ANCHO),variable.ANCHO,variable.ALTO);
+                muerta[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                muerta[j][i].setIcon(image_drive.getBlanco());
+                mblancas.add(muerta[j][i]);
+                this.repaint();
+            }
+        }
+    }
+
+private void DibujarTablero(){
 
         boolean blanco=false;
 
@@ -248,15 +321,22 @@ private void DibujarPiezas(){
             numeros.add(n);
         }
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel estado;
+    public javax.swing.JLabel estado1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JPanel letras;
+    public javax.swing.JPanel mblancas;
+    public javax.swing.JPanel mnegras;
+    private javax.swing.JSplitPane muertas;
     private javax.swing.JPanel numeros;
     private javax.swing.JMenuItem salir;
     private javax.swing.JScrollPane scroll;
