@@ -11,7 +11,7 @@
 
 package gui;
 
-import gui.jugador.piezas;
+import gui.jugador.piezas_jugador;
 import gui.resources.image_drive;
 import gui.resources.variable;
 import javax.swing.JLabel;
@@ -28,8 +28,8 @@ public class view extends javax.swing.JFrame {
     private int m_negra=0, m_blanca=0;
     private image_drive image_drive=new image_drive();
     public boolean turno, fin=false;
-    public piezas jugador1;
-    public piezas jugador2;
+    public piezas_jugador jugador1;
+    public piezas_jugador jugador2;
     
     /** Creates new form view */
     public view() {
@@ -388,8 +388,8 @@ private void Dibujar(){
  * Jugador2: Blancas
  */
 private void DibujarPiezas(){
-    jugador1=new piezas(variable.BLANCA,this,variable.ABAJO);
-    jugador2=new piezas(variable.NEGRA,this,variable.ARRIBA);
+    jugador1=new piezas_jugador(variable.BLANCA,this,variable.ABAJO);
+    jugador2=new piezas_jugador(variable.NEGRA,this,variable.ARRIBA);
 }
 
  private void DibujarMuertas(){

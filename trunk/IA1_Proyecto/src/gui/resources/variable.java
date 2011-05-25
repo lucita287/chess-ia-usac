@@ -38,6 +38,9 @@ public class variable {
     public static final boolean NOFONDO=false;
     public static final boolean FONDO=true;
 
+    public static final boolean MIN=false;
+    public static final boolean MAX=true;
+
     public static final java.awt.Color COLOR =new java.awt.Color(95, 43, 4);
     //public static final java.awt.Color COLOR =new java.awt.Color(240, 240, 240);
 
