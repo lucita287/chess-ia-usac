@@ -8,9 +8,6 @@ package gui.jugador;
 import gui.resources.variable;
 import gui.view;
 import javax.swing.JOptionPane;
-import javax.swing.JOptionPane;
-import javax.swing.JOptionPane;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -99,30 +96,36 @@ public void IsPieza(int x, int y){
     for(int i=0;i<8;i++){
         if((peon[i].casillax==x)&&(peon[i].casillay==y)){
             peon[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Peon "+i+" "+this.ColorFicha());
+            //System.out.println("Muere Peon "+i+" "+this.ColorFicha());
+            gui.AgregarMuerto(peon[i].isColor(), peon[i].getIcon());
             break;
         }
     }
     for(int i=0;i<2;i++){
         if((torre[i].casillax==x)&&(torre[i].casillay==y)){
             torre[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Torre "+i+" "+this.ColorFicha());
+            //System.out.println("Muere Torre "+i+" "+this.ColorFicha());
+            gui.AgregarMuerto(torre[i].isColor(), torre[i].getIcon());
             break;
         }
         if((caballo[i].casillax==x)&&(caballo[i].casillay==y)){
             caballo[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
+            //System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
+            gui.AgregarMuerto(caballo[i].isColor(), caballo[i].getIcon());
             break;
         }
         if((alfil[i].casillax==x)&&(alfil[i].casillay==y)){
             alfil[i].setEstado(variable.MUERTA);
-            System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
+            //System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
+            gui.AgregarMuerto(alfil[i].isColor(), alfil[i].getIcon());
             break;
         }
     }
         if((reina.casillax==x)&&(reina.casillay==y)){
             reina.setEstado(variable.MUERTA);
-            System.out.println("Muere Reina "+this.ColorFicha());
+            //System.out.println("Muere Reina "+this.ColorFicha());
+            gui.AgregarMuerto(reina.isColor(), reina.getIcon());
+
         }
         if((rey.casillax==x)&&(rey.casillay==y)){
             rey.setEstado(variable.MUERTA);

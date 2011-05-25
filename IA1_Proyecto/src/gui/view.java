@@ -16,11 +16,15 @@ import gui.resources.image_drive;
 import gui.resources.variable;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.Icon;
+
 
 public class view extends javax.swing.JFrame {
 
     private JLabel fondo[][]=new JLabel[8][8];
-    private JLabel muerta[][]=new JLabel[4][4];
+    private JLabel muertan[][]=new JLabel[4][4];
+    private JLabel muertab[][]=new JLabel[4][4];
+    private int m_negra=0, m_blanca=0;
     private image_drive image_drive=new image_drive();
     public boolean turno;
     public piezas jugador1;
@@ -29,7 +33,7 @@ public class view extends javax.swing.JFrame {
     /** Creates new form view */
     public view() {
         initComponents();
-        setBounds(new java.awt.Rectangle(150, 0, 1050, 770));
+        setBounds(new java.awt.Rectangle(150, 0, 950, 770));
         Dibujar();
           if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -87,7 +91,7 @@ public class view extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
 
-        estado.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        estado.setFont(new java.awt.Font("Tahoma", 1, 24));
         estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png"))); // NOI18N
         estado.setText("Blancas");
@@ -135,25 +139,25 @@ public class view extends javax.swing.JFrame {
         estado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         estado1.setText("Piezas Muertas");
         estado1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        estado1.setMaximumSize(new java.awt.Dimension(320, 35));
+        estado1.setMaximumSize(new java.awt.Dimension(240, 35));
         estado1.setMinimumSize(new java.awt.Dimension(100, 35));
         estado1.setOpaque(true);
-        estado1.setPreferredSize(new java.awt.Dimension(320, 35));
+        estado1.setPreferredSize(new java.awt.Dimension(240, 35));
         jSplitPane3.setTopComponent(estado1);
 
         muertas.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         muertas.setDoubleBuffered(true);
-        muertas.setMinimumSize(new java.awt.Dimension(320, 670));
-        muertas.setPreferredSize(new java.awt.Dimension(320, 670));
+        muertas.setMinimumSize(new java.awt.Dimension(240, 670));
+        muertas.setPreferredSize(new java.awt.Dimension(240, 670));
 
-        mnegras.setMinimumSize(new java.awt.Dimension(640, 640));
-        mnegras.setPreferredSize(new java.awt.Dimension(640, 320));
+        mnegras.setMinimumSize(new java.awt.Dimension(240, 640));
+        mnegras.setPreferredSize(new java.awt.Dimension(240, 320));
         mnegras.setLayout(null);
         muertas.setTopComponent(mnegras);
         mnegras.getAccessibleContext().setAccessibleParent(muertas);
 
-        mblancas.setMinimumSize(new java.awt.Dimension(640, 640));
-        mblancas.setPreferredSize(new java.awt.Dimension(640, 320));
+        mblancas.setMinimumSize(new java.awt.Dimension(240, 640));
+        mblancas.setPreferredSize(new java.awt.Dimension(240, 320));
         mblancas.setLayout(null);
         muertas.setBottomComponent(mblancas);
 
@@ -217,6 +221,11 @@ public class view extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     public void Reiniciar(){
+        fondo=new JLabel[8][8];
+        muertan=new JLabel[4][4];
+        muertab=new JLabel[4][4];
+        m_negra=0;
+        m_blanca=0;
         tablero.removeAll();
         mblancas.removeAll();
         mnegras.removeAll();
@@ -264,16 +273,21 @@ private void DibujarPiezas(){
         for(int i=0;i<4;i++){
 
             for(int j=0;j<4;j++){
-                muerta[j][i]=new JLabel("");
-                muerta[j][i].setBounds((j*variable.ALTO),(i*variable.ANCHO),variable.ANCHO,variable.ALTO);
-                muerta[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-                muerta[j][i].setIcon(image_drive.getNegro());
-                mnegras.add(muerta[j][i]);
-                muerta[j][i]=new JLabel("");
-                muerta[j][i].setBounds((j*variable.ALTO),(i*variable.ANCHO),variable.ANCHO,variable.ALTO);
-                muerta[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-                muerta[j][i].setIcon(image_drive.getBlanco());
-                mblancas.add(muerta[j][i]);
+                muertan[j][i]=new JLabel("");
+                muertan[j][i].setBackground(variable.COLOR);
+                muertan[j][i].setOpaque(true);
+                muertan[j][i].setBounds((j*variable.PIEZA_ALTO),(i*variable.PIEZA_ANCHO),variable.PIEZA_ANCHO,variable.PIEZA_ALTO);
+                muertan[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+          
+                mnegras.add(muertan[j][i]);
+
+                muertab[j][i]=new JLabel("");
+                muertab[j][i].setOpaque(true);
+                muertab[j][i].setBounds((j*variable.PIEZA_ALTO),(i*variable.PIEZA_ANCHO),variable.PIEZA_ANCHO,variable.PIEZA_ALTO);
+                muertab[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+                muertab[j][i].setBackground(new java.awt.Color(45, 23, 4));
+                
+                mblancas.add(muertab[j][i]);
                 this.repaint();
             }
         }
@@ -322,6 +336,40 @@ private void DibujarTablero(){
         }
     }
 
+public void AgregarMuerto(boolean color, Icon pieza){
+
+    if(color){
+        if(m_blanca<4){
+          muertab[m_blanca][0].setIcon(pieza);
+        }else{
+        if(m_blanca<8){
+          muertab[m_blanca-4][1].setIcon(pieza);
+        }else{
+        if(m_blanca<12){
+          muertab[m_blanca-8][2].setIcon(pieza);
+        }else{
+          muertab[m_blanca-12][3].setIcon(pieza);
+        }
+        }
+        }
+        m_blanca++;
+    }else{
+        if(m_negra<4){
+                  muertan[m_negra][0].setIcon(pieza);
+                }else{
+                if(m_negra<8){
+                  muertan[m_negra-4][1].setIcon(pieza);
+                }else{
+                if(m_negra<12){
+                  muertan[m_negra-8][2].setIcon(pieza);
+                }else{
+                  muertan[m_negra-12][3].setIcon(pieza);
+                }
+                }
+                }
+                m_negra++;
+    }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel estado;
     public javax.swing.JLabel estado1;
