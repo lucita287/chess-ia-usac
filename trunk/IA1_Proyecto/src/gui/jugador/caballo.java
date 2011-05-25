@@ -18,7 +18,7 @@ public class caballo extends pieza{
 
     public caballo(boolean color, view gui, int x, int y) {
         image_drive image_drive=new image_drive();
-        super.setPieza(color,variable.VIVA,x*variable.PIEZA_ANCHO,y*variable.PIEZA_ALTO,image_drive.getCaballo(color),gui);
+        super.setPieza(color,variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getCaballo(color),gui);
 
     }
  

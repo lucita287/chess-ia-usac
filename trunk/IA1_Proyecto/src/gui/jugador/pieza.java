@@ -92,7 +92,7 @@ public class pieza extends JLabel{
         setIcon(imagen);
         setText(nombre);
         setOpaque(!variable.FONDO);
-        setBounds(x,y,variable.PIEZA_ANCHO, variable.PIEZA_ALTO);
+        setBounds(x,y,variable.ANCHO+variable.DP_ANCHO, variable.ALTO+variable.DP_ALTO);
         //setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gui.tablero.add(this);
 
@@ -168,7 +168,7 @@ public void PosiblesMovimientos(){
  * Regresa la Pieza al Origen
  */
 private void RegresarOrigen(){
-    this.setLocation(origenx*variable.PIEZA_ANCHO, origeny*variable.PIEZA_ALTO);
+    this.setLocation(origenx*variable.ANCHO+variable.DP_ANCHO, origeny*variable.ALTO+variable.DP_ALTO);
 }
 
 private void Actualizar(){
@@ -204,7 +204,7 @@ private void Mover(){
             Turno();
             this.setOpaque(!variable.FONDO);
             System.out.println(((char)getLetra())+"-"+getNumero());
-            this.setLocation(x*variable.PIEZA_ANCHO, y*variable.PIEZA_ALTO);
+            this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
         }else{
             RegresarOrigen();
         }
