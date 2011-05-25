@@ -110,21 +110,25 @@ public class pieza extends JLabel{
          addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent evt) {
+                if(!gui.fin)
                 if(gui.turno==color)
                 Entered(evt);
             }
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
+                if(!gui.fin)
                 if(gui.turno==color)
                 Exited(evt);
             }
             @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
+                if(!gui.fin)
                 if(gui.turno==color)
                 Pressed(evt);
             }
             @Override
             public void mouseReleased(java.awt.event.MouseEvent evt) {
+                if(!gui.fin)
                 if(gui.turno==color)
                 Released(evt);
             }
@@ -133,6 +137,7 @@ public class pieza extends JLabel{
         addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             @Override
             public void mouseDragged(java.awt.event.MouseEvent evt) {
+                if(!gui.fin)
                 if(gui.turno==color)
                 Dragged(evt);
             }
@@ -179,21 +184,11 @@ private void Actualizar(){
 
 /**
  * Actualiza la Variable de Turno
- * e Indica que se a camabiado de Turno
+ * e Indica que se a cambiado de Turno
  */
 private void Turno(){
           gui.turno=!gui.turno;
-          if(gui.turno){
-            gui.estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-            gui.estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
-            gui.estado.setText("Blancas");
-            gui.estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-            }else{
-            gui.estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-            gui.estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
-            gui.estado.setText("Negras");
-            gui.estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-            }
+          gui.Turno();
 }
 
 /**
@@ -307,7 +302,7 @@ private void Mover(){
         return moviemientos;
     }
 
-/**
+ /**
  *
  * @param casillax
  */
@@ -376,7 +371,6 @@ private void Mover(){
                     gui.jugador1.IsPieza(x, y);
                     return true;                    
                 }
-                
             }
         }
         return false;

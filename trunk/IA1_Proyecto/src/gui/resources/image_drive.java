@@ -15,7 +15,7 @@ public class image_drive {
      * de devolver una Variable Icon
      * con todas las imagenes que se van a implementar
      *
-     * Realizada por David Recinos
+     * Realizada por David Recinos & Daniel Guerra
      *
      */
     private Icon no_seleccionado;

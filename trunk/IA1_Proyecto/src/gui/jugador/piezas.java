@@ -7,7 +7,6 @@ package gui.jugador;
 
 import gui.resources.variable;
 import gui.view;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -129,26 +128,9 @@ public void IsPieza(int x, int y){
         }
         if((rey.casillax==x)&&(rey.casillay==y)){
             rey.setEstado(variable.MUERTA);
-
-        Object[] options = {"Si",
-                            "No"};
-        int n = JOptionPane.showOptionDialog(null,
-            "JAQUE MATE\n"
-            + "Desea Jugar de Nuevo?",
-            "FIN DEL JUEGO!!!",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,     //do not use a custom Icon
-            options,  //the titles of buttons
-            options[0]); //default button title
-            //System.out.println("FIN DE JUEGO");
             System.out.println("Muere Rey "+this.ColorFicha());
-        if(n==0){
-            gui.Reiniciar();
-        }else{
-            System.exit(1);
-        }
-            
+            gui.Finish(this.ColorFicha());
+            gui.AgregarMuerto(rey.isColor(), rey.getIcon());
         }
 }
 
