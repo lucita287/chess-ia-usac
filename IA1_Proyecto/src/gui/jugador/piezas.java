@@ -62,6 +62,47 @@ public class piezas {
         rey=new rey(color,gui,4,s1);
     }
 
+    /**
+     *  LETRA DE PIEZAS
+     *  Rey = R
+        Dama = D
+        Torre = T1 y T2
+        Caballo = C1 y C2
+        Alfil = A1 y A2
+        Peón = P1, P2...P8
+     * X = LETRAS  (A, B...,H)
+     * Y = NUMEROS (1, 2...,8)
+     *
+     * @param pieza 
+     * @param npieza 
+     * @param letra
+     * @param numero
+     */
+    public void Mover(int pieza, int npieza, int letra, int numero){
+        
+        switch(pieza){
+
+            case 'R': //REY
+                getRey().MoverXY(letra, numero);
+                break;
+            case 'D': //DAMA
+                getReina().MoverXY(letra, numero);
+                break;
+            case 'T': //TORRE
+                getTorre()[npieza-1].MoverXY(letra, numero);
+                break;
+            case 'C': //CABALLO
+                getCaballo()[npieza-1].MoverXY(letra, numero);
+                break;
+            case 'A': //ALFIL
+                getAlfil()[npieza-1].MoverXY(letra, numero);
+                break;
+            case 'P': //PEON
+                getPeon()[npieza-1].MoverXY(letra, numero);
+                break;
+        }
+    }
+    
     public alfil[] getAlfil() {
         return alfil;
     }
@@ -91,46 +132,62 @@ public class piezas {
     }
 
 public void IsPieza(int x, int y){
-    System.out.print("\n"+x+"-"+y);
+    //System.out.print("\n"+x+"-"+y);
     for(int i=0;i<8;i++){
         if((peon[i].casillax==x)&&(peon[i].casillay==y)){
-            peon[i].setEstado(variable.MUERTA);
-            //System.out.println("Muere Peon "+i+" "+this.ColorFicha());
+            if(peon[i].isVivo()){
             gui.AgregarMuerto(peon[i].isColor(), peon[i].getIcon());
+            peon[i].setVivo(variable.MUERTA);
+            }
+            //System.out.println("Muere Peon "+i+" "+this.ColorFicha());
+            
             break;
         }
     }
     for(int i=0;i<2;i++){
         if((torre[i].casillax==x)&&(torre[i].casillay==y)){
-            torre[i].setEstado(variable.MUERTA);
-            //System.out.println("Muere Torre "+i+" "+this.ColorFicha());
+            if(torre[i].isVivo()){
             gui.AgregarMuerto(torre[i].isColor(), torre[i].getIcon());
+            torre[i].setVivo(variable.MUERTA);
+            }
+            //System.out.println("Muere Torre "+i+" "+this.ColorFicha());
             break;
         }
         if((caballo[i].casillax==x)&&(caballo[i].casillay==y)){
-            caballo[i].setEstado(variable.MUERTA);
-            //System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
+            if(caballo[i].isVivo()){
             gui.AgregarMuerto(caballo[i].isColor(), caballo[i].getIcon());
+            caballo[i].setVivo(variable.MUERTA);
+            }
+            //System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
+
             break;
         }
         if((alfil[i].casillax==x)&&(alfil[i].casillay==y)){
-            alfil[i].setEstado(variable.MUERTA);
-            //System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
+            if(alfil[i].isVivo()){
             gui.AgregarMuerto(alfil[i].isColor(), alfil[i].getIcon());
+            alfil[i].setVivo(variable.MUERTA);
+            }
+            //System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
             break;
         }
     }
         if((reina.casillax==x)&&(reina.casillay==y)){
-            reina.setEstado(variable.MUERTA);
-            //System.out.println("Muere Reina "+this.ColorFicha());
+            if(reina.isVivo()){
             gui.AgregarMuerto(reina.isColor(), reina.getIcon());
+            reina.setVivo(variable.MUERTA);
+            }
+            //System.out.println("Muere Reina "+this.ColorFicha());
+
 
         }
         if((rey.casillax==x)&&(rey.casillay==y)){
-            rey.setEstado(variable.MUERTA);
+            if(rey.isVivo()){
+            rey.setVivo(variable.MUERTA);
+            gui.AgregarMuerto(rey.isColor(), rey.getIcon());
+            }
             System.out.println("Muere Rey "+this.ColorFicha());
             gui.Finish(this.ColorFicha());
-            gui.AgregarMuerto(rey.isColor(), rey.getIcon());
+            
         }
 }
 

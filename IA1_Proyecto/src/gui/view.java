@@ -67,6 +67,8 @@ public class view extends javax.swing.JFrame {
         tablero = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         jSplitPane3 = new javax.swing.JSplitPane();
+        jSplitPane4 = new javax.swing.JSplitPane();
+        consola = new javax.swing.JTextField();
         estado1 = new javax.swing.JLabel();
         muertas = new javax.swing.JSplitPane();
         mnegras = new javax.swing.JPanel();
@@ -74,11 +76,11 @@ public class view extends javax.swing.JFrame {
         numeros = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        rendirse = new javax.swing.JMenuItem();
         COLOR = new javax.swing.JMenu();
         RBLANCAS = new javax.swing.JCheckBoxMenuItem();
         RNEGRAS = new javax.swing.JCheckBoxMenuItem();
         reiniciar = new javax.swing.JMenuItem();
-        rendirse = new javax.swing.JMenuItem();
         salir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -140,6 +142,16 @@ public class view extends javax.swing.JFrame {
 
         jSplitPane3.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        jSplitPane4.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane4.setEnabled(false);
+
+        consola.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                consolaKeyPressed(evt);
+            }
+        });
+        jSplitPane4.setTopComponent(consola);
+
         estado1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         estado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         estado1.setText("Piezas Muertas");
@@ -148,20 +160,22 @@ public class view extends javax.swing.JFrame {
         estado1.setMinimumSize(new java.awt.Dimension(100, 35));
         estado1.setOpaque(true);
         estado1.setPreferredSize(new java.awt.Dimension(240, 35));
-        jSplitPane3.setTopComponent(estado1);
+        jSplitPane4.setBottomComponent(estado1);
+
+        jSplitPane3.setTopComponent(jSplitPane4);
 
         muertas.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         muertas.setDoubleBuffered(true);
         muertas.setMinimumSize(new java.awt.Dimension(240, 670));
         muertas.setPreferredSize(new java.awt.Dimension(240, 670));
 
-        mnegras.setMinimumSize(new java.awt.Dimension(240, 640));
+        mnegras.setMinimumSize(new java.awt.Dimension(240, 320));
         mnegras.setPreferredSize(new java.awt.Dimension(240, 320));
         mnegras.setLayout(null);
         muertas.setTopComponent(mnegras);
         mnegras.getAccessibleContext().setAccessibleParent(muertas);
 
-        mblancas.setMinimumSize(new java.awt.Dimension(240, 640));
+        mblancas.setMinimumSize(new java.awt.Dimension(240, 320));
         mblancas.setPreferredSize(new java.awt.Dimension(240, 320));
         mblancas.setLayout(null);
         muertas.setBottomComponent(mblancas);
@@ -179,6 +193,14 @@ public class view extends javax.swing.JFrame {
         jSplitPane2.getAccessibleContext().setAccessibleParent(tablero_principal);
 
         jMenu1.setText("Opciones");
+
+        rendirse.setText("Rendirse");
+        rendirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rendirseActionPerformed(evt);
+            }
+        });
+        jMenu1.add(rendirse);
 
         COLOR.setText("Color de Piezas");
         COLOR.setEnabled(false);
@@ -209,14 +231,6 @@ public class view extends javax.swing.JFrame {
             }
         });
         jMenu1.add(reiniciar);
-
-        rendirse.setText("Rendirse");
-        rendirse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rendirseActionPerformed(evt);
-            }
-        });
-        jMenu1.add(rendirse);
 
         salir.setText("Salir");
         salir.setText("Salir");
@@ -322,6 +336,19 @@ public class view extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_rendirseActionPerformed
+
+    private void consolaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_consolaKeyPressed
+        if(evt.getKeyChar()=='\n'){
+            String a=consola.getText().trim();
+            //System.out.println(a.charAt(0)+" "+(a.charAt(1)-48)+" "+a.charAt(2)+" "+(a.charAt(3)-48));
+            if(turno){
+                jugador1.Mover(a.charAt(0), a.charAt(1)-48, a.charAt(2), a.charAt(3)-48);
+            }else{
+                jugador2.Mover(a.charAt(0), a.charAt(1)-48, a.charAt(2), a.charAt(3)-48);
+            }
+            consola.setText("");
+        }
+    }//GEN-LAST:event_consolaKeyPressed
 
     public void Turno(){
          if(turno){
@@ -466,6 +493,7 @@ public void AgregarMuerto(boolean color, Icon pieza){
     private javax.swing.JMenu COLOR;
     private javax.swing.JCheckBoxMenuItem RBLANCAS;
     private javax.swing.JCheckBoxMenuItem RNEGRAS;
+    private javax.swing.JTextField consola;
     public javax.swing.JLabel estado;
     public javax.swing.JLabel estado1;
     private javax.swing.JMenu jMenu1;
@@ -475,6 +503,7 @@ public void AgregarMuerto(boolean color, Icon pieza){
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JSplitPane jSplitPane3;
+    private javax.swing.JSplitPane jSplitPane4;
     private javax.swing.JPanel letras;
     public javax.swing.JPanel mblancas;
     public javax.swing.JPanel mnegras;

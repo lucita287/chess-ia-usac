@@ -200,11 +200,28 @@ private void Mover(){
             this.setOpaque(!variable.FONDO);
             System.out.println(((char)getLetra())+"-"+getNumero());
             this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
+            origenx=x;
+            origeny=y;
         }else{
             RegresarOrigen();
         }
 }
 
+/**
+ * Mueve la Pieza a una posicion que sea Valida
+ */
+public void MoverXY(int letra, int numero){
+        x=letra-65;
+        y=numero-1;
+        casillax=x;
+        casillay=y;
+        setBackground(variable.COLOR);
+        this.setOpaque(true);
+        PosiblesMovimientos();
+        Mover();
+        //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
+        Actualizar();
+}
 /**
  *
  * @param evt
@@ -322,7 +339,7 @@ private void Mover(){
  *
  * @param viva
  */
-    public void setEstado(boolean estado) {
+    public void setVivo(boolean estado) {
         this.setVisible(estado);
         x=-1;
         y=-1;
@@ -345,7 +362,7 @@ private void Mover(){
  * variable.MUERTA
  * @return
  */
-    public boolean isEstado() {
+    public boolean isVivo() {
         return viva;
     }
 /**
@@ -359,8 +376,7 @@ private void Mover(){
     private boolean IsMovimientoValido() {
         //System.out.print("\n");
         for(int i=0;i<moviemientos.size();i++){
-            System.out.println("-->"+moviemientos.get(i).getX()
-                    +" - "+moviemientos.get(i).getY());
+            //System.out.println("-->"+moviemientos.get(i).getX()+" - "+moviemientos.get(i).getY());
             //System.out.println("***"+x+" - "+y);
             if(moviemientos.get(i).getX()==(x)&&
                     moviemientos.get(i).getY()==(y)){
