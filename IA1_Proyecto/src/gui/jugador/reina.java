@@ -18,14 +18,14 @@ public class reina extends pieza{
 
     public reina(boolean color, view gui, int x, int y) {
         image_drive image_drive=new image_drive();
-        super.setPieza(color,variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getReina(color),gui);
+        super.setPieza(color,'D',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getReina(color),gui);
 
     }
  
     @Override
    public void PosiblesMovimientos() {
         this.getMov().clear();
-         System.out.println(this.getOrigenx()+" "+this.getOrigeny());
+         //System.out.println(this.getOrigenx()+" "+this.getOrigeny());
          for(int i=0;i<8;i++){
             if((i!=this.getOrigenx())){
             this.getMov().add(new xypieza(i,this.getOrigeny()));
