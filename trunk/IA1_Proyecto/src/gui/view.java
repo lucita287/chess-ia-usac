@@ -344,8 +344,13 @@ public class view extends javax.swing.JFrame {
     private void consolaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_consolaKeyPressed
         if(evt.getKeyChar()=='\n'){
             String a=consola.getText().trim();
-            //System.out.println(a.charAt(0)+" "+(a.charAt(1)-48)+" "+a.charAt(2)+" "+(a.charAt(3)-48));
-            if(a.length()>4){
+            Comando(a);
+            //System.out.println(a.charAt(0)+" "+(a.charAt(1)-48)+" "+a.charAt(2)+" "+(a.charAt(3)-48));            
+        }
+    }//GEN-LAST:event_consolaKeyPressed
+
+    public void Comando(String a){
+         if(a.length()>4){
                 consola.setText("ERROR!!!");
                 consola.selectAll();
             }else{
@@ -356,10 +361,7 @@ public class view extends javax.swing.JFrame {
             }
             consola.setText("");
             }
-            
-        }
-    }//GEN-LAST:event_consolaKeyPressed
-
+    }
     public void Turno(){
          if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -371,6 +373,8 @@ public class view extends javax.swing.JFrame {
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
             estado.setText("Negras");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+            Comando("P3C5");
+            Comando("C1C6");
             }
     }
  /**

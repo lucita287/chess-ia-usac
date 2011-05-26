@@ -264,6 +264,7 @@ public void MoverXY(int letra, int numero){
  private void Pressed(MouseEvent evt) {
         x=evt.getX();
         y=evt.getY();
+        
         casillax=this.getX()/variable.ANCHO;
         casillay=this.getY()/variable.ALTO;
         origenx=this.getX()/variable.ANCHO;
