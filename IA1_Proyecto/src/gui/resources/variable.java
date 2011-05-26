@@ -19,12 +19,12 @@ public class variable {
     public static final int DP_ANCHO=(ANCHO-PIEZA_ANCHO)/2;
     public static final int DP_ALTO=(ALTO-PIEZA_ALTO)/2;
 
-    public static final int REY=0;
-    public static final int REINA=1;
-    public static final int TORRE=2;
+    public static final int REY=6;
+    public static final int DAMA=5;
+    public static final int TORRE=4;
     public static final int ALFIL=3;
-    public static final int CABALLO=4;
-    public static final int PEON=5;
+    public static final int CABALLO=2;
+    public static final int PEON=1;
 
     public static final boolean VIVA=true;
     public static final boolean MUERTA=false;
