@@ -457,7 +457,7 @@ private void DibujarTablero(){
             }else{
                 blanco=true;
             }
-            JLabel n=new JLabel((i+1)+"",SwingConstants.CENTER);
+            JLabel n=new JLabel((8-(i))+"",SwingConstants.CENTER);
             n.setVerticalAlignment(SwingConstants.TOP);
             n.setSize(variable.ANCHO/10, variable.ALTO);
             numeros.add(n);

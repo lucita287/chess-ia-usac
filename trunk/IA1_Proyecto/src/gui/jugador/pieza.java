@@ -343,6 +343,7 @@ public void MoverXY(int letra, int numero){
  */
     public void setVivo(boolean estado) {
         this.setVisible(estado);
+        this.setBounds(0, 0, 0, 0);
         x=-1;
         y=-1;
         this.repaint();

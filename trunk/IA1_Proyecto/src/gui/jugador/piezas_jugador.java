@@ -12,7 +12,7 @@ import gui.view;
  *
  * @author Daniel
  */
-public class piezas_jugador {
+public final class piezas_jugador {
 
     private peon peon[];
     private torre torre[];
@@ -20,7 +20,7 @@ public class piezas_jugador {
     private caballo caballo[];
     private reina reina;
     private rey rey;
-    private boolean color;
+    private final boolean color;
     private view gui;
     public npiezas_jugador vivos;
     
@@ -61,7 +61,7 @@ public class piezas_jugador {
 
         reina=new reina(color,gui,3,s1);
         rey=new rey(color,gui,4,s1);
-        vivos=new npiezas_jugador();
+        vivos=new npiezas_jugador(this.isColor());
     }
 
     /**
@@ -147,7 +147,7 @@ public class piezas_jugador {
  * @param y
  */
 public void IsPieza(int pieza,int x, int y){
-    //System.out.print("\n"+x+"-"+y);
+    System.out.print("\n"+x+"-"+y);
     if(pieza=='P'){
           return;
         }else{
