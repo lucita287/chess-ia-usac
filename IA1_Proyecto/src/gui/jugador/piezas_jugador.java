@@ -147,7 +147,7 @@ public final class piezas_jugador {
  * @param y
  */
 public void IsPieza(int pieza,int x, int y){
-    System.out.print("\n"+x+"-"+y);
+    //System.out.print("\n"+x+"-"+y);
     if(pieza=='P'){
           return;
         }else{
