@@ -350,9 +350,9 @@ public class view extends javax.swing.JFrame {
                 consola.selectAll();
             }else{
             if(turno){
-                jugador1.Mover(a.charAt(0), a.charAt(1)-48, a.charAt(2), a.charAt(3)-48);
+                jugador1.Mover(a.charAt(0), (a.charAt(1)-48), a.charAt(2), 9-(a.charAt(3)-48));
             }else{
-                jugador2.Mover(a.charAt(0), a.charAt(1)-48, a.charAt(2), a.charAt(3)-48);
+                jugador2.Mover(a.charAt(0), (a.charAt(1)-48), a.charAt(2), 9-(a.charAt(3)-48));
             }
             consola.setText("");
             }

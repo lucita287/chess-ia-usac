@@ -81,7 +81,7 @@ public final class piezas_jugador {
      * @param numero
      */
     public void Mover(int pieza, int npieza, int letra, int numero){
-        
+        //System.out.println(letra+" "+numero);
         switch(pieza){
 
             case 'R': //REY

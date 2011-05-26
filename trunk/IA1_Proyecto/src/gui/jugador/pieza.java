@@ -282,11 +282,11 @@ public void MoverXY(int letra, int numero){
 
 /**
  * POSICION EN Y DE LA PIEZA
- * 8, 7,6 ,5, 4, 3, 2, 1
+ * 8, 7, 6 ,5, 4, 3, 2, 1
  * @return
  */
     public int getNumero() {
-        return (casillay+1);
+        return (8-casillay);
     }
 
     /**DEVULVE EL NUMERO DE CASILLA EN X
