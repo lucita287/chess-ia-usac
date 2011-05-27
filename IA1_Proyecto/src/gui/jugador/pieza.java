@@ -389,7 +389,17 @@ public void MoverXY(int letra, int numero){
 
     private boolean IsMovimientoValido() {
 
-        return movimientos.containsKey((x+y));
+        if(movimientos.containsKey((x+y))){
+            if(gui.turno){
+                    gui.jugador2.IsPieza(this.pieza,x, y);
+                    return true;
+                }else{
+                    gui.jugador1.IsPieza(this.pieza,x, y);
+                    return true;
+                }
+        }else{
+            return false;
+        }
 
 
     }
