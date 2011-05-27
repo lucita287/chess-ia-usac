@@ -28,6 +28,9 @@ public final class piezas_jugador {
         int s1=0;
         int s2=1;
         int pos=0;
+        int columna=0;
+        int fila=0;
+        Integer [][]tablero=gui.tablero.getTablero();
         this.color=color;
         this.gui=gui;
         if(!posicion){
@@ -37,11 +40,26 @@ public final class piezas_jugador {
         peon=new peon[8];
         for(int i=0;i<peon.length;i++){
             peon[i]=new peon(color,gui,i,s2);
+            columna=peon[i].getCasillax();
+            fila=peon[i].getCasillay();
+            if(this.isColor()){
+                tablero[fila][columna]=variable.BPEON;
+            }else{
+                tablero[fila][columna]=variable.NPEON;
+            }
+
         }
 
         torre=new torre[2];
         for(int i=0;i<torre.length;i++){
             torre[i]=new torre(color,gui,pos,s1);
+            columna=torre[i].getCasillax();
+            fila=torre[i].getCasillay();
+            if(this.isColor()){
+                tablero[fila][columna]=variable.BTORRE;
+            }else{
+                tablero[fila][columna]=variable.NTORRE;
+            }
             pos+=7;
         }
 
@@ -49,6 +67,13 @@ public final class piezas_jugador {
         caballo=new caballo[2];
         for(int i=0;i<caballo.length;i++){
             caballo[i]=new caballo(color,gui,pos,s1);
+            columna=caballo[i].getCasillax();
+            fila=caballo[i].getCasillay();
+            if(this.isColor()){
+                tablero[fila][columna]=variable.BCABALLO;
+            }else{
+                tablero[fila][columna]=variable.NCABALLO;
+            }
             pos+=5;
         }
 
@@ -56,12 +81,35 @@ public final class piezas_jugador {
         alfil=new alfil[2];
         for(int i=0;i<alfil.length;i++){
             alfil[i]=new alfil(color,gui,pos,s1);
+            columna=alfil[i].getCasillax();
+            fila=alfil[i].getCasillay();
+            if(this.isColor()){
+                tablero[fila][columna]=variable.BALFIL;
+            }else{
+                tablero[fila][columna]=variable.NALFIL;
+            }
             pos+=3;
         }
 
         reina=new reina(color,gui,3,s1);
+            columna=reina.getCasillax();
+            fila=reina.getCasillay();
+            if(this.isColor()){
+                tablero[fila][columna]=variable.BDAMA;
+            }else{
+                tablero[fila][columna]=variable.NDAMA;
+            }
         rey=new rey(color,gui,4,s1);
+            columna=rey.getCasillax();
+            fila=rey.getCasillay();
+            if(this.isColor()){
+                tablero[fila][columna]=variable.BREY;
+            }else{
+                tablero[fila][columna]=variable.NREY;
+            }
+
         vivos=new npiezas_jugador(this.isColor());
+        gui.tablero.setTablero(tablero);
     }
 
     /**
@@ -157,6 +205,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(peon[i].isColor(), peon[i].getIcon());
             peon[i].setVivo(variable.MUERTA);
             vivos.removePeon();
+            gui.tablero.getTablero()[peon[i].getCasillax()][peon[i].getCasillay()]=0;
             }
             //System.out.println("Muere Peon "+i+" "+this.ColorFicha());
             
@@ -169,6 +218,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(torre[i].isColor(), torre[i].getIcon());
             torre[i].setVivo(variable.MUERTA);
             vivos.removeTorre();
+            gui.tablero.getTablero()[torre[i].getCasillax()][torre[i].getCasillay()]=0;
             }
             //System.out.println("Muere Torre "+i+" "+this.ColorFicha());
             break;
@@ -178,6 +228,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(caballo[i].isColor(), caballo[i].getIcon());
             caballo[i].setVivo(variable.MUERTA);
             vivos.removeCaballo();
+            gui.tablero.getTablero()[caballo[i].getCasillax()][caballo[i].getCasillay()]=0;
             }
             //System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
 
@@ -188,6 +239,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(alfil[i].isColor(), alfil[i].getIcon());
             alfil[i].setVivo(variable.MUERTA);
             vivos.removeAlfil();
+            gui.tablero.getTablero()[alfil[i].getCasillax()][alfil[i].getCasillay()]=0;
             }
             //System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
             break;
@@ -198,6 +250,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(reina.isColor(), reina.getIcon());
             reina.setVivo(variable.MUERTA);
             vivos.removeReina();
+            gui.tablero.getTablero()[rey.getCasillax()][reina.getCasillay()]=0;
             }
             //System.out.println("Muere Reina "+this.ColorFicha());
 
@@ -208,13 +261,16 @@ public void IsPieza(int pieza,int x, int y){
             rey.setVivo(variable.MUERTA);
             gui.AgregarMuerto(rey.isColor(), rey.getIcon());
             vivos.removeRey();
+            gui.tablero.getTablero()[rey.getCasillax()][rey.getCasillay()]=0;
             }
             //System.out.println("Muere Rey "+this.ColorFicha());
             gui.Finish(this.ColorFicha());
+            gui.tablero.Imprimir();
             
         }
 
         }
+    gui.tablero.Imprimir();
 }
 
 public String ColorFicha(){

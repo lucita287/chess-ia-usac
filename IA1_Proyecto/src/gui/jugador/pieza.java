@@ -96,7 +96,7 @@ public class pieza extends JLabel{
         setOpaque(!variable.FONDO);
         setBounds(x,y,variable.PIEZA_ANCHO, variable.PIEZA_ALTO);
         //setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        gui.tablero.add(this);
+        gui.Tablero.add(this);
 
     }
 
@@ -162,7 +162,7 @@ private void Exited(java.awt.event.MouseEvent evt) {
         //setBackground(variable.COLOR);
         //this.setOpaque(variable.FONDO);
           this.repaint();
-          gui.tablero.repaint();
+          gui.Tablero.repaint();
       }
 
 
@@ -180,7 +180,7 @@ private void RegresarOrigen(){
 
 private void Actualizar(){
         this.repaint();
-        gui.tablero.repaint();
+        gui.Tablero.repaint();
         gui.repaint();
 }
 
@@ -202,6 +202,9 @@ private void Mover(){
             this.setOpaque(!variable.FONDO);
             System.out.println(((char)getLetra())+"-"+getNumero());
             this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
+            int temp=gui.tablero.getTablero()[origenx][origeny];
+            gui.tablero.getTablero()[origenx][origeny]=0;
+            gui.tablero.getTablero()[x][y]=temp;
             origenx=x;
             origeny=y;
         }else{
@@ -253,7 +256,7 @@ public void MoverXY(int letra, int numero){
           this.setOpaque(variable.FONDO);
           if (inDrag) {
           this.repaint();
-          gui.tablero.repaint();
+          gui.Tablero.repaint();
           }
 
       }
