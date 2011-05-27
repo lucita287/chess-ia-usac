@@ -380,9 +380,7 @@ public class view extends javax.swing.JFrame {
            // Comando("C1C6");
             }
     }
- /**
- *
- */
+
 private void Dibujar(){
         DibujarPiezas();
         DibujarTablero();
