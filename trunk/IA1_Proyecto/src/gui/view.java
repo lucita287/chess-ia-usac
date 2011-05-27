@@ -12,6 +12,7 @@
 package gui;
 
 import gui.jugador.piezas_jugador;
+import gui.jugador.tablero;
 import gui.resources.image_drive;
 import gui.resources.variable;
 import javax.swing.JLabel;
@@ -30,11 +31,13 @@ public class view extends javax.swing.JFrame {
     public boolean turno, fin=false;
     public piezas_jugador jugador1;
     public piezas_jugador jugador2;
+    public tablero tablero;
     
     /** Creates new form view */
     public view() {
         initComponents();
         setBounds(new java.awt.Rectangle(150, 0, 950, 770));
+        tablero=new tablero();
         Dibujar();
           if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -46,7 +49,7 @@ public class view extends javax.swing.JFrame {
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
             estado.setText("Negras");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-            }
+            }      
     }
 
     /** This method is called from within the constructor to
@@ -64,7 +67,7 @@ public class view extends javax.swing.JFrame {
         split1 = new javax.swing.JSplitPane();
         letras = new javax.swing.JPanel();
         scroll = new javax.swing.JScrollPane();
-        tablero = new javax.swing.JPanel();
+        Tablero = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         jSplitPane3 = new javax.swing.JSplitPane();
         jSplitPane4 = new javax.swing.JSplitPane();
@@ -98,7 +101,7 @@ public class view extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
 
-        estado.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        estado.setFont(new java.awt.Font("Tahoma", 1, 24));
         estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png"))); // NOI18N
         estado.setText("Blancas");
@@ -126,10 +129,10 @@ public class view extends javax.swing.JFrame {
         scroll.setMinimumSize(new java.awt.Dimension(642, 642));
         scroll.setPreferredSize(new java.awt.Dimension(642, 642));
 
-        tablero.setMinimumSize(new java.awt.Dimension(640, 640));
-        tablero.setPreferredSize(new java.awt.Dimension(640, 640));
-        tablero.setLayout(null);
-        scroll.setViewportView(tablero);
+        Tablero.setMinimumSize(new java.awt.Dimension(640, 640));
+        Tablero.setPreferredSize(new java.awt.Dimension(640, 640));
+        Tablero.setLayout(null);
+        scroll.setViewportView(Tablero);
 
         split1.setTopComponent(scroll);
 
@@ -152,7 +155,7 @@ public class view extends javax.swing.JFrame {
         });
         jSplitPane4.setTopComponent(consola);
 
-        estado1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        estado1.setFont(new java.awt.Font("Tahoma", 1, 24));
         estado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         estado1.setText("Piezas Muertas");
         estado1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -298,7 +301,7 @@ public class view extends javax.swing.JFrame {
         m_negra=0;
         m_blanca=0;
         fin=false;
-        tablero.removeAll();
+        Tablero.removeAll();
         mnegras.removeAll();
         mblancas.removeAll();
         numeros = new javax.swing.JPanel();
@@ -307,7 +310,7 @@ public class view extends javax.swing.JFrame {
         letras = new javax.swing.JPanel();
         letras.setLayout(new java.awt.GridLayout(1, 8));
         Dibujar();
-        tablero.updateUI();
+        Tablero.updateUI();
         this.repaint();
         Turno();
     }
@@ -373,8 +376,8 @@ public class view extends javax.swing.JFrame {
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
             estado.setText("Negras");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-            Comando("P3C5");
-            Comando("C1C6");
+           // Comando("P3C5");
+           // Comando("C1C6");
             }
     }
  /**
@@ -382,13 +385,14 @@ public class view extends javax.swing.JFrame {
  */
 private void Dibujar(){
         DibujarPiezas();
-        turno=RBLANCAS.isSelected();
         DibujarTablero();
+        turno=RBLANCAS.isSelected();
         DibujarMuertas();
-        tablero.updateUI();
+        Tablero.updateUI();
         mnegras.updateUI();
         mblancas.updateUI();
         this.repaint();
+        tablero.Imprimir();
 }
 /**
  * Metodo que dibuja las Piezas del:
@@ -403,16 +407,15 @@ private void DibujarPiezas(){
  private void DibujarMuertas(){
 
         for(int i=0;i<4;i++){
-
             for(int j=0;j<4;j++){
                 muertan[j][i]=new JLabel("");
                 muertan[j][i].setBackground(variable.COLOR);
                 muertan[j][i].setOpaque(true);
                 muertan[j][i].setBounds((j*variable.PIEZA_ALTO),(i*variable.PIEZA_ANCHO),variable.PIEZA_ANCHO,variable.PIEZA_ALTO);
                 muertan[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-          
                 mnegras.add(muertan[j][i]);
-
+                tablero.getTablero()[i+2][j]=0;
+                tablero.getTablero()[i+2][j+4]=0;
                 muertab[j][i]=new JLabel("");
                 muertab[j][i].setOpaque(true);
                 muertab[j][i].setBounds((j*variable.PIEZA_ALTO),(i*variable.PIEZA_ANCHO),variable.PIEZA_ANCHO,variable.PIEZA_ALTO);
@@ -421,6 +424,7 @@ private void DibujarPiezas(){
                 
                 mblancas.add(muertab[j][i]);
                 this.repaint();
+
             }
         }
     }
@@ -447,13 +451,13 @@ private void DibujarTablero(){
                 fondo[j][i].setBounds((j*variable.ALTO),(i*variable.ANCHO),variable.ANCHO,variable.ALTO);
                 fondo[j][i].setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
                 if(blanco){
-                fondo[j][i].setIcon(image_drive.getBlanco());
+                fondo[j][i].setIcon(image_drive.getNegro());
                 blanco=false;
                 }else{
-                fondo[j][i].setIcon(image_drive.getNegro());
+                fondo[j][i].setIcon(image_drive.getBlanco());
                 blanco=true;
                 }
-                tablero.add(fondo[j][i]);
+                Tablero.add(fondo[j][i]);
                 this.repaint();
             }
             if(blanco){
@@ -507,6 +511,7 @@ public void AgregarMuerto(boolean color, Icon pieza){
     private javax.swing.JMenu COLOR;
     private javax.swing.JCheckBoxMenuItem RBLANCAS;
     private javax.swing.JCheckBoxMenuItem RNEGRAS;
+    public javax.swing.JPanel Tablero;
     private javax.swing.JTextField consola;
     public javax.swing.JLabel estado;
     public javax.swing.JLabel estado1;
@@ -528,7 +533,6 @@ public void AgregarMuerto(boolean color, Icon pieza){
     private javax.swing.JMenuItem salir;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JSplitPane split1;
-    public javax.swing.JPanel tablero;
     private javax.swing.JSplitPane tablero_principal;
     // End of variables declaration//GEN-END:variables
 
