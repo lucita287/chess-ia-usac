@@ -23,25 +23,25 @@ public class peon extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
-        /**
-        this.getMov().clear();
+
+        this.ClearMov();
                 
         if(this.isColor()){
             if((this.getOrigeny()-1)>=0){
-            this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()-1));
+            this.AddMov(this.getOrigenx(),this.getOrigeny()-1);
             }
             if(((this.getOrigeny()-2)>=0)&&(this.getOrigeny()==6)){
-            this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()-2));
+            this.AddMov(this.getOrigenx(),this.getOrigeny()-2);
             }
 
         }else{
             if((this.getOrigeny()+1)<=8){
-            this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()+1));
+            this.AddMov(this.getOrigenx(),this.getOrigeny()+1);
             }
             if((this.getOrigeny()+2)<=8&&(this.getOrigeny()==1)){
-            this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()+2));
+            this.AddMov(this.getOrigenx(),this.getOrigeny()+2);
             }
         }
-         * **/
+
    }
 }
