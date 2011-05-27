@@ -241,9 +241,9 @@ private void Mover(){
             int temp=gui.tablero.getTablero()[origeny][origenx];
             gui.tablero.getTablero()[origeny][origenx]=0;
             gui.tablero.getTablero()[y][x]=temp;
-            gui.tablero.Imprimir();
             origenx=x;
             origeny=y;
+            gui.tablero.Imprimir();
         }else{
             RegresarOrigen();
         }

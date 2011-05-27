@@ -269,10 +269,11 @@ public class view extends javax.swing.JFrame {
 
 
     public void Finish(String txt){
-        System.out.println("# DE PIEZAS BLANCAS");
+        /**System.out.println("# DE PIEZAS BLANCAS");
         jugador1.vivos.Ver();
         System.out.println("# DE PIEZAS NEGRAS");
         jugador2.vivos.Ver();
+         * **/
         Object[] options = {"Si",
                             "No"};
         int n = JOptionPane.showOptionDialog(null,
