@@ -359,8 +359,8 @@ public void MoverXY(int letra, int numero){
  * @return
  */
     public void AddMov(int x, int y) {
-        System.out.println("***>"+x+"-"+y);
-        movimientos.put((x+y), new xypieza(x,y));
+        System.out.println("**>"+x+"-"+y);
+        movimientos.put(x+","+y, new xypieza(x,y));
     }
 
     public void ClearMov() {
@@ -423,7 +423,7 @@ public void MoverXY(int letra, int numero){
 
     private boolean IsMovimientoValido() {
 
-        if(movimientos.containsKey((x+y))){
+        if(movimientos.containsKey(y+","+x)){
             if(gui.turno){
                     gui.jugador2.IsPieza(this.pieza,x, y);
                     return true;

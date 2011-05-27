@@ -20,34 +20,97 @@ public class reina extends pieza{
         image_drive image_drive=new image_drive();
         super.setPieza(color,'D',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getReina(color),gui);
 
+        /*David*/
+        if(color)
+            mi_color=1;
+        else
+            mi_color=-1;
     }
  
     @Override
    public void PosiblesMovimientos() {
-        /**
-        this.getMov().clear();
-         for(int i=0;i<8;i++){
-            if((i!=this.getOrigenx())){
-            this.getMov().add(new xypieza(i,this.getOrigeny()));
-            }
-            if((i!=this.getOrigeny())){
-            this.getMov().add(new xypieza(this.getOrigenx(),i));
-            }
+       this.ClearMov();
 
-            if(i!=0){
-            int a1=this.getOrigenx()+i;
-            int a2=this.getOrigenx()-i;
-            int b1=this.getOrigeny()+i;
-            int b2=this.getOrigeny()-i;
-            this.getMov().add(new xypieza(a1,b1));
-            this.getMov().add(new xypieza(a1,b2));
-            this.getMov().add(new xypieza(a2,b1));
-            this.getMov().add(new xypieza(a2,b2));
-            }
-            
+        matrix=gui.tablero.getTablero();
+
+        int x_=this.getOrigeny();
+        int y_=this.getOrigenx();
+
+        //hacia arriba
+        x_--;
+        while(x_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_--;
         }
-         * **/
-        
 
+        //hacia abajo
+        x_=this.getOrigeny();
+        x_++;
+        while(x_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_++;
+        }
+
+        //hacia derecha
+        y_=this.getOrigenx();
+        x_=this.getOrigeny();
+        y_++;
+        while(y_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            y_++;
+        }
+
+        //hacia izquierda
+        y_=this.getOrigenx();
+        x_=this.getOrigeny();
+        y_--;
+        while(y_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            y_--;
+        }
+        
+        x_=this.getOrigeny();
+        y_=this.getOrigenx();
+        //Diagonal arriba izquierda
+        x_--;y_--;
+        while(x_>=0&&y_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_--;y_--;
+        }
+        //Diagonal abajo izquierda
+        x_=this.getOrigeny();
+        y_=this.getOrigenx();
+        x_++;y_--;
+
+        while(x_<=7&&y_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_++;y_--;
+        }
+
+        //Diagonal abajo derecha
+        x_=this.getOrigeny();
+        y_=this.getOrigenx();
+        x_++;y_++;
+        while(x_<=7&&y_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_++;y_++;
+        }
+
+        //Diagonal arriba derecha
+        x_=this.getOrigeny();
+        y_=this.getOrigenx();
+        x_--;y_++;
+        while(x_>=0&&y_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_--;y_++;
+        }
    }
 }

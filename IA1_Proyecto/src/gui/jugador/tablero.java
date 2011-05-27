@@ -14,9 +14,6 @@ public class tablero {
     private Integer matriz[][];
     private int nturno;
 
-/**
- *
- */
     public tablero() {
         matriz=new Integer[8][8];
         nturno=0;
@@ -46,6 +43,9 @@ public class tablero {
             }
             System.out.print("\n");
         }
+    }
 
+    public Integer[][] GenerarTablero(){
+        return null;
     }
 }
