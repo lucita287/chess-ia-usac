@@ -36,7 +36,7 @@ public class pieza extends JLabel{
     public pieza() {
     }
 
-        /*DAVID -code*/
+    /*DAVID -code*/
     //y:fila
     //x:columna
     public Integer matrix[][];
