@@ -14,56 +14,56 @@ import java.util.List;
  */
 
 /**
- * Represents a node of the Tree<T> class. The Node<T> is also a container, and
+ * Represents a node of the Tree<T> class. The Nodo<T> is also a container, and
  * can be thought of as instrumentation to determine the location of the type T
  * in the Tree<T>.
  */
-public class Node<T> {
+public class Nodo<T> {
 
     public T data;
-    public List<Node<T>> children;
+    public List<Nodo<T>> children;
 
     /**
      * Default ctor.
      */
-    public Node() {
+    public Nodo() {
         super();
     }
 
     /**
-     * Convenience ctor to create a Node<T> with an instance of T.
+     * Convenience ctor to create a Nodo<T> with an instance of T.
      * @param data an instance of T.
      */
-    public Node(T data) {
+    public Nodo(T data) {
         this();
         setData(data);
     }
 
     /**
-     * Return the children of Node<T>. The Tree<T> is represented by a single
-     * root Node<T> whose children are represented by a List<Node<T>>. Each of
-     * these Node<T> elements in the List can have children. The getChildren()
-     * method will return the children of a Node<T>.
-     * @return the children of Node<T>
+     * Return the children of Nodo<T>. The Tree<T> is represented by a single
+     * root Nodo<T> whose children are represented by a List<Nodo<T>>. Each of
+     * these Nodo<T> elements in the List can have children. The getChildren()
+     * method will return the children of a Nodo<T>.
+     * @return the children of Nodo<T>
      */
-    public List<Node<T>> getChildren() {
+    public List<Nodo<T>> getChildren() {
         if (this.children == null) {
-            return new ArrayList<Node<T>>();
+            return new ArrayList<Nodo<T>>();
         }
         return this.children;
     }
 
     /**
-     * Sets the children of a Node<T> object. See docs for getChildren() for
+     * Sets the children of a Nodo<T> object. See docs for getChildren() for
      * more information.
-     * @param children the List<Node<T>> to set.
+     * @param children the List<Nodo<T>> to set.
      */
-    public void setChildren(List<Node<T>> children) {
+    public void setChildren(List<Nodo<T>> children) {
         this.children = children;
     }
 
     /**
-     * Returns the number of immediate children of this Node<T>.
+     * Returns the number of immediate children of this Nodo<T>.
      * @return the number of immediate children.
      */
     public int getNumberOfChildren() {
@@ -74,24 +74,24 @@ public class Node<T> {
     }
 
     /**
-     * Adds a child to the list of children for this Node<T>. The addition of
-     * the first child will create a new List<Node<T>>.
-     * @param child a Node<T> object to set.
+     * Adds a child to the list of children for this Nodo<T>. The addition of
+     * the first child will create a new List<Nodo<T>>.
+     * @param child a Nodo<T> object to set.
      */
-    public void addChild(Node<T> child) {
+    public void addChild(Nodo<T> child) {
         if (children == null) {
-            children = new ArrayList<Node<T>>();
+            children = new ArrayList<Nodo<T>>();
         }
         children.add(child);
     }
 
     /**
-     * Inserts a Node<T> at the specified position in the child list. Will     * throw an ArrayIndexOutOfBoundsException if the index does not exist.
+     * Inserts a Nodo<T> at the specified position in the child list. Will     * throw an ArrayIndexOutOfBoundsException if the index does not exist.
      * @param index the position to insert at.
-     * @param child the Node<T> object to insert.
+     * @param child the Nodo<T> object to insert.
      * @throws IndexOutOfBoundsException if thrown.
      */
-    public void insertChildAt(int index, Node<T> child) throws IndexOutOfBoundsException {
+    public void insertChildAt(int index, Nodo<T> child) throws IndexOutOfBoundsException {
         if (index == getNumberOfChildren()) {
             // this is really an append
             addChild(child);
@@ -103,7 +103,7 @@ public class Node<T> {
     }
 
     /**
-     * Remove the Node<T> element at index index of the List<Node<T>>.
+     * Remove the Nodo<T> element at index index of the List<Nodo<T>>.
      * @param index the index of the element to delete.
      * @throws IndexOutOfBoundsException if thrown.
      */
@@ -115,7 +115,7 @@ public class Node<T> {
         return this.data;
     }
 
-    public void setData(T data) {
+    private void setData(T data) {
         this.data = data;
     }
 
@@ -123,7 +123,7 @@ public class Node<T> {
         StringBuilder sb = new StringBuilder();
         sb.append("{").append(getData().toString()).append(",[");
         int i = 0;
-        for (Node<T> e : getChildren()) {
+        for (Nodo<T> e : getChildren()) {
             if (i > 0) {
                 sb.append(",");
             }
