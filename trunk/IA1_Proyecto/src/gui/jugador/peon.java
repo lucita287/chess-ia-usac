@@ -23,6 +23,7 @@ public class peon extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
+        /**
         this.getMov().clear();
                 
         if(this.isColor()){
@@ -41,5 +42,6 @@ public class peon extends pieza{
             this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()+2));
             }
         }
+         * **/
    }
 }

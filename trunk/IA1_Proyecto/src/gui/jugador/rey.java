@@ -24,6 +24,8 @@ public class rey extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
+
+        /**
         this.getMov().clear();
             this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()+1));
             this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()-1));
@@ -33,5 +35,6 @@ public class rey extends pieza{
             this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()));
             this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()+1));
             this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()-1));
+         * **/
    }
 }

@@ -24,6 +24,7 @@ public class reina extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
+        /**
         this.getMov().clear();
          for(int i=0;i<8;i++){
             if((i!=this.getOrigenx())){
@@ -45,6 +46,7 @@ public class reina extends pieza{
             }
             
         }
+         * **/
         
 
    }

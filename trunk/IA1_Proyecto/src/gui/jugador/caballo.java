@@ -24,6 +24,7 @@ public class caballo extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
+        /**
         this.getMov().clear();
             this.getMov().add(new xypieza(this.getOrigenx()+2,this.getOrigeny()-1));
             this.getMov().add(new xypieza(this.getOrigenx()-2,this.getOrigeny()-1));
@@ -33,6 +34,6 @@ public class caballo extends pieza{
             this.getMov().add(new xypieza(this.getOrigenx()-2,this.getOrigeny()+1));
             this.getMov().add(new xypieza(this.getOrigenx()+1,this.getOrigeny()+2));
             this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()+2));
-
+        **/
    }
 }

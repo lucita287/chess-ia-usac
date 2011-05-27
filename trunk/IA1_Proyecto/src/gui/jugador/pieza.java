@@ -8,12 +8,12 @@ package gui.jugador;
 import gui.resources.variable;
 import gui.view;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.TreeMap;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
 public class pieza extends JLabel{
+
 
     /**
      * Clase principal que se encarga del manejor
@@ -30,7 +30,7 @@ public class pieza extends JLabel{
     private String nombre;
     private int pieza;
     public view gui;
-    private HashSet<xypieza> movimientos= new HashSet();
+    private TreeMap movimientos= new TreeMap();
     private boolean inDrag = false;
 
     public pieza() {
@@ -325,10 +325,13 @@ public void MoverXY(int letra, int numero){
  * 
  * @return
  */
-    public HashSet<xypieza> getMov() {
-        return movimientos;
+    public void AddMov(int x, int y) {
+        movimientos.put((x+y), new xypieza(x,y));
     }
 
+    public void ClearMov() {
+        movimientos.clear();
+    }
  /**
  *
  * @param casillax
@@ -385,23 +388,10 @@ public void MoverXY(int letra, int numero){
     }
 
     private boolean IsMovimientoValido() {
-        //System.out.print("\n");
-        /**for(int i=0;i<movimientos.size();i++){
-            //System.out.println("-->"+movimientos.get(i).getX()+" - "+movimientos.get(i).getY());
-            //System.out.println("***"+x+" - "+y);
-            if(movimientos.get(i).getX()==(x)&&
-                    movimientos.get(i).getY()==(y)){
-                if(gui.turno){
-                    gui.jugador2.IsPieza(this.pieza,x, y);
-                    return true;
-                }else{
-                    gui.jugador1.IsPieza(this.pieza,x, y);
-                    return true;                    
-                }
-            }
-        }
-         * **/
-        return false;
+
+        return movimientos.containsKey((x+y));
+
+
     }
 
 }

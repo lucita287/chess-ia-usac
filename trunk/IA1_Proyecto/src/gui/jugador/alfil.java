@@ -24,7 +24,7 @@ public class alfil extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
-        this.getMov().clear();
+        /**this.getMov().clear();
                 
         this.getMov().clear();
         for(int i=1;i<8;i++){
@@ -36,6 +36,6 @@ public class alfil extends pieza{
             this.getMov().add(new xypieza(a1,b2));
             this.getMov().add(new xypieza(a2,b1));
             this.getMov().add(new xypieza(a2,b2));
-        }
+        }**/
    }
 }
