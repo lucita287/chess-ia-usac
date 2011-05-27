@@ -27,8 +27,8 @@ public class pieza extends JLabel{
     private int origeny;
     private Icon imagen;
     private String nombre;
-    public int pieza;
-    private view gui;
+    private int pieza;
+    public view gui;
     private ArrayList<xypieza> moviemientos= new ArrayList();
     private boolean inDrag = false;
 
