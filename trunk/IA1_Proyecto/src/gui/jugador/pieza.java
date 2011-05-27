@@ -36,6 +36,41 @@ public class pieza extends JLabel{
     public pieza() {
     }
 
+        /*DAVID -code*/
+    //y:fila
+    //x:columna
+    public Integer matrix[][];
+    public int mi_color;
+
+    //supervisa si es un oponente
+    public boolean es_oponente(int x,int y){
+        if(mi_color>0 && matrix[x][y]<0)
+            return true;
+        if(mi_color<0 && matrix[x][y]>0)
+            return true;
+        return false;
+    }
+
+    //hace el calculo e indica si debe continuar o no
+    public boolean calculo(int x_,int y_){
+            if(matrix[x_][y_]==0)//espacio libre, puede avanzar
+            {
+                //posiciones.add(new posicion(x_, y_));
+                this.AddMov(x_, y_);
+            }
+            else if(es_oponente(x_, y_))//es un oponente y debe salir
+            {
+                //ataques.add(new posicion(x_, y_));
+                this.AddMov(x_, y_);
+                return false;
+            }
+            else{//hay una barrera de un compañero
+                return false;
+            }
+        return true;
+    }
+    /*DAVID -code*/
+
 /**
  * 
  * @param color
