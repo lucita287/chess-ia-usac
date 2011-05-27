@@ -45,7 +45,7 @@ public class tablero {
         }
     }
 
-    public Integer[][] GenerarTablero(){
+    public Integer[][] GenerarTablero(int pieza){
         return null;
     }
 }
