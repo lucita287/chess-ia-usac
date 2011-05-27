@@ -21,12 +21,9 @@ public class torre extends pieza{
     /*DAVID -code*/
     //y:fila
     //x:columna
-    int matrix[][];
+    Integer matrix[][];
     int mi_color;
 
-    public void recibe_matrix(int m[][]){//recibe la matriz del tablero
-        matrix=m;
-    }
 
     //Guarda las posiciones posibles
     public Set<posicion> posiciones;
@@ -44,10 +41,14 @@ public class torre extends pieza{
     //hace el calculo e indica si debe continuar o no
     public boolean calculo(int x_,int y_){
             if(matrix[x_][y_]==0)//espacio libre, puede avanzar
-                posiciones.add(new posicion(x_, y_));
+            {
+                //posiciones.add(new posicion(x_, y_));
+                this.AddMov(x_, y_);
+            }
             else if(es_oponente(x_, y_))//es un oponente y debe salir
             {
-                ataques.add(new posicion(x_, y_));
+                //ataques.add(new posicion(x_, y_));
+                this.AddMov(x_, y_);
                 return false;
             }
             else{//hay una barrera de un compañero
@@ -55,42 +56,6 @@ public class torre extends pieza{
             }
         return true;
     }
-
-    public void calculo_rutas(){
-        posiciones = new HashSet<posicion>();
-        ataques = new HashSet<posicion>();
-        int x_=this.getOrigenx();
-        int y_=this.getOrigeny();
-
-        //Calculo Arriba
-        y_--;
-        while(y_>=0){
-            if(!calculo(x_,y_))//si no debe continuar paramos
-                break;
-            y_--;
-        }
-
-        //Calculo Abajo
-        y_=this.getOrigeny();
-        y_++;
-        while(y_<=7){
-            if(!calculo(x_,y_))//si no debe continuar paramos
-                break;
-            y_++;
-        }
-
-        //Calculo Derecha
-        y_=this.getOrigeny();
-        x_++;
-        while(x_<=7){
-            if(!calculo(x_,y_))//si no debe continuar paramos
-                break;
-            x_++;
-        }
-
-    }
-
-
     /*DAVID -code*/
     public torre(boolean color, view gui, int x, int y) {
         image_drive image_drive=new image_drive();
@@ -105,15 +70,37 @@ public class torre extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
-        this.getMov().clear();
-                
-        for(int i=0;i<8;i++){
+        this.ClearMov();
+
+        
+        /*for(int i=0;i<8;i++){
             if((i!=this.getOrigenx())){
-            this.getMov().add(new xypieza(i,this.getOrigeny()));
+                this.getMov().add(new xypieza(i,this.getOrigeny()));//f,c //c,f
             }
             if((i!=this.getOrigeny())){
-            this.getMov().add(new xypieza(this.getOrigenx(),i));
+                this.getMov().add(new xypieza(this.getOrigenx(),i));
             }
+        }*/
+        matrix=gui.tablero.getTablero();
+
+        int x_=this.getOrigenx();
+        int y_=this.getOrigeny();
+
+        //hacia arriba
+        x_--;
+        while(x_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_--;
+        }
+
+        //hacia abajo
+        x_=this.getOrigenx();
+        x_++;
+        while(x_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_++;
         }
    }
 }
