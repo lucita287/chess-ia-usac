@@ -26,7 +26,7 @@ public class view extends javax.swing.JFrame {
     private JLabel fondo[][]=new JLabel[8][8];
     private JLabel muertan[][]=new JLabel[4][4];
     private JLabel muertab[][]=new JLabel[4][4];
-    private int m_negra=0, m_blanca=0;
+    public int m_negra=0, m_blanca=0;
     private image_drive image_drive=new image_drive();
     public boolean turno, fin=false;
     public piezas_jugador jugador1;
