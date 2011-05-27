@@ -29,8 +29,7 @@ public class reina extends pieza{
  
     @Override
    public void PosiblesMovimientos() {
-       this.ClearMov();
-
+        this.ClearMov();
         matrix=gui.tablero.getTablero();
 
         int x_=this.getOrigeny();
