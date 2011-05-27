@@ -14,6 +14,8 @@ public class variable {
     public static final int ALTO=80;
     public static final int ANCHO=80;
 
+    public static final int PROFUNDIDAD_RAMIFICACION=3;
+    
     public static final int PIEZA_ALTO=60;
     public static final int PIEZA_ANCHO=60;
     public static final int DP_ANCHO=(ANCHO-PIEZA_ANCHO)/2;
