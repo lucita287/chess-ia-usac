@@ -15,6 +15,9 @@ public class npiezas_jugador {
 
     private int peon, alfil, caballo, torre, reina, rey;
     private int color;
+    
+    public npiezas_jugador() {
+    }
   
     public npiezas_jugador(boolean jugador) {
         peon=8;
