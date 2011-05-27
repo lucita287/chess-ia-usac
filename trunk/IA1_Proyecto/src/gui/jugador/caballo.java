@@ -20,10 +20,41 @@ public class caballo extends pieza{
         image_drive image_drive=new image_drive();
         super.setPieza(color,'C',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getCaballo(color),gui);
 
+        if(color)
+            mi_color=1;
+        else
+            mi_color=-1;
     }
  
     @Override
    public void PosiblesMovimientos() {
+        this.ClearMov();
+        matrix=gui.tablero.getTablero();
+
+        int x=this.getOrigeny();
+        int y=this.getOrigenx();
+
+        //Movimientos derecha
+        if((x+1<=7)&&(y+2<=7))
+            calculo(x+1,y+2);
+        if((x+2<=7)&&(y+1<=7))
+            calculo(x+2,y+1);
+        if((x+1<=7)&&(y-2>=0))
+            calculo(x+1,y-2);
+        if((x+2<=7)&&(y-1>=0))
+            calculo(x+2,y-1);
+
+        //Ahora pivotea
+        if((x-1>=0)&&(y+2<=7))
+            calculo(x-1,y+2);
+        if((x-2>=0)&&(y+1<=7))
+            calculo(x-2,y+1);
+        if((x-1>=0)&&(y-2>=0))
+            calculo(x-1,y-2);
+        if((x-2>=0)&&(y-1>=0))
+            calculo(x-2,y-1);
+
+
         /**
         this.getMov().clear();
             this.getMov().add(new xypieza(this.getOrigenx()+2,this.getOrigeny()-1));
