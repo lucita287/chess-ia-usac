@@ -20,6 +20,11 @@ public class alfil extends pieza{
         image_drive image_drive=new image_drive();
         super.setPieza(color,'A',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getAlfil(color),gui);
 
+        /*David*/
+        if(color)
+            mi_color=1;
+        else
+            mi_color=-1;
     }
  
     @Override
