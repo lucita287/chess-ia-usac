@@ -52,5 +52,26 @@ public class torre extends pieza{
                 break;
             x_++;
         }
+
+        //hacia derecha
+        y_=this.getOrigenx();
+        x_=this.getOrigeny();
+        y_++;
+        while(y_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            y_++;
+        }
+
+        //hacia izquierda
+        y_=this.getOrigenx();
+        x_=this.getOrigeny();
+        y_--;
+        while(y_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            y_--;
+        }
+
    }
 }
