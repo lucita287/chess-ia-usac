@@ -205,7 +205,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(peon[i].isColor(), peon[i].getIcon());
             peon[i].setVivo(variable.MUERTA);
             vivos.removePeon();
-            gui.tablero.getTablero()[peon[i].getCasillax()][peon[i].getCasillay()]=0;
+            //gui.tablero.getTablero()[peon[i].getCasillax()][peon[i].getCasillay()]=0;
             }
             //System.out.println("Muere Peon "+i+" "+this.ColorFicha());
             
@@ -218,7 +218,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(torre[i].isColor(), torre[i].getIcon());
             torre[i].setVivo(variable.MUERTA);
             vivos.removeTorre();
-            gui.tablero.getTablero()[torre[i].getCasillax()][torre[i].getCasillay()]=0;
+            //gui.tablero.getTablero()[torre[i].getCasillax()][torre[i].getCasillay()]=0;
             }
             //System.out.println("Muere Torre "+i+" "+this.ColorFicha());
             break;
@@ -228,7 +228,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(caballo[i].isColor(), caballo[i].getIcon());
             caballo[i].setVivo(variable.MUERTA);
             vivos.removeCaballo();
-            gui.tablero.getTablero()[caballo[i].getCasillax()][caballo[i].getCasillay()]=0;
+            //gui.tablero.getTablero()[caballo[i].getCasillax()][caballo[i].getCasillay()]=0;
             }
             //System.out.println("Muere Caballo "+i+" "+this.ColorFicha());
 
@@ -239,7 +239,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(alfil[i].isColor(), alfil[i].getIcon());
             alfil[i].setVivo(variable.MUERTA);
             vivos.removeAlfil();
-            gui.tablero.getTablero()[alfil[i].getCasillax()][alfil[i].getCasillay()]=0;
+            //gui.tablero.getTablero()[alfil[i].getCasillax()][alfil[i].getCasillay()]=0;
             }
             //System.out.println("Muere Alfil "+i+" "+this.ColorFicha());
             break;
@@ -250,7 +250,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.AgregarMuerto(reina.isColor(), reina.getIcon());
             reina.setVivo(variable.MUERTA);
             vivos.removeReina();
-            gui.tablero.getTablero()[rey.getCasillax()][reina.getCasillay()]=0;
+            //gui.tablero.getTablero()[reina.getCasillax()][reina.getCasillay()]=0;
             }
             //System.out.println("Muere Reina "+this.ColorFicha());
 
@@ -261,16 +261,13 @@ public void IsPieza(int pieza,int x, int y){
             rey.setVivo(variable.MUERTA);
             gui.AgregarMuerto(rey.isColor(), rey.getIcon());
             vivos.removeRey();
-            gui.tablero.getTablero()[rey.getCasillax()][rey.getCasillay()]=0;
+            //gui.tablero.getTablero()[rey.getCasillax()][rey.getCasillay()]=0;
             }
             //System.out.println("Muere Rey "+this.ColorFicha());
-            gui.Finish(this.ColorFicha());
-            gui.tablero.Imprimir();
-            
+            gui.Finish(this.ColorFicha());            
         }
 
         }
-    gui.tablero.Imprimir();
 }
 
 public String ColorFicha(){
