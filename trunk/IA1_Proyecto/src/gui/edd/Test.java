@@ -15,15 +15,15 @@ public class Test {
 
 
     public static void main(String[] args){
-            Tree<String> t=new Tree();
-            Node raiz=new Node();
+            Arbol<String> t=new Arbol();
+            Nodo raiz=new Nodo();
             raiz.data="1";
             for(int i=0;i<8;i++){
-                Node hijo1=new Node();
+                Nodo hijo1=new Nodo();
                 hijo1.data="HIJO"+i;
                 raiz.addChild(hijo1);
                 for(int j=0;j<i;j++){
-                    Node hijo2=new Node();
+                    Nodo hijo2=new Nodo();
                     hijo2.data="->HIJO"+i+j;
                     hijo1.addChild(hijo2);
                 }
