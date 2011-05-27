@@ -31,7 +31,7 @@ public class torre extends pieza{
    public void PosiblesMovimientos() {
         this.ClearMov();
 
-        matrix=gui.tablero.getTablero();
+        //matrix=gui.tablero.getTablero();
 
         int x_=this.getOrigeny();
         int y_=this.getOrigenx();
