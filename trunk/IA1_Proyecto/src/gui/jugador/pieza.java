@@ -9,6 +9,7 @@ import gui.resources.variable;
 import gui.view;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 
@@ -29,7 +30,7 @@ public class pieza extends JLabel{
     private String nombre;
     private int pieza;
     public view gui;
-    private ArrayList<xypieza> moviemientos= new ArrayList();
+    private HashSet<xypieza> movimientos= new HashSet();
     private boolean inDrag = false;
 
     public pieza() {
@@ -324,8 +325,8 @@ public void MoverXY(int letra, int numero){
  * 
  * @return
  */
-    public ArrayList<xypieza> getMov() {
-        return moviemientos;
+    public HashSet<xypieza> getMov() {
+        return movimientos;
     }
 
  /**
@@ -385,11 +386,11 @@ public void MoverXY(int letra, int numero){
 
     private boolean IsMovimientoValido() {
         //System.out.print("\n");
-        for(int i=0;i<moviemientos.size();i++){
-            //System.out.println("-->"+moviemientos.get(i).getX()+" - "+moviemientos.get(i).getY());
+        /**for(int i=0;i<movimientos.size();i++){
+            //System.out.println("-->"+movimientos.get(i).getX()+" - "+movimientos.get(i).getY());
             //System.out.println("***"+x+" - "+y);
-            if(moviemientos.get(i).getX()==(x)&&
-                    moviemientos.get(i).getY()==(y)){
+            if(movimientos.get(i).getX()==(x)&&
+                    movimientos.get(i).getY()==(y)){
                 if(gui.turno){
                     gui.jugador2.IsPieza(this.pieza,x, y);
                     return true;
@@ -399,6 +400,7 @@ public void MoverXY(int letra, int numero){
                 }
             }
         }
+         * **/
         return false;
     }
 
