@@ -239,7 +239,6 @@ private void Mover(){
             System.out.println(((char)getLetra())+"-"+getNumero());
             this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
             int temp=gui.tablero.getTablero()[origeny][origenx];
-            //System.out.println(temp);
             gui.tablero.getTablero()[origeny][origenx]=0;
             gui.tablero.getTablero()[y][x]=temp;
             gui.tablero.Imprimir();
@@ -310,7 +309,6 @@ public void MoverXY(int letra, int numero){
         casillay=this.getY()/variable.ALTO;
         origenx=this.getX()/variable.ANCHO;
         origeny=this.getY()/variable.ALTO;
-        System.out.println(origenx+""+origeny);
          setBackground(variable.COLOR);
          this.setOpaque(variable.FONDO);
     }
