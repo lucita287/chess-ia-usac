@@ -25,7 +25,6 @@ public class alfil extends pieza{
     @Override
    public void PosiblesMovimientos() {
         /**this.getMov().clear();
-                
         this.getMov().clear();
         for(int i=1;i<8;i++){
             int a1=this.getOrigenx()+i;
@@ -37,5 +36,47 @@ public class alfil extends pieza{
             this.getMov().add(new xypieza(a2,b1));
             this.getMov().add(new xypieza(a2,b2));
         }**/
+        int x_=this.getOrigeny();
+        int y_=this.getOrigenx();
+
+
+        //Diagonal arriba izquierda
+        x_--;y_--;
+        while(x_>=0&&y_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_--;y_--;
+        }
+
+        //Diagonal abajo izquierda
+        x_=this.getOrigeny();
+        y_=this.getOrigenx();
+        x_++;y_--;
+        while(x_<=7&&y_>=0){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_++;y_--;
+        }
+
+        //Diagonal abajo derecha
+        x_=this.getOrigeny();
+        y_=this.getOrigenx();
+        x_++;y_++;
+        while(x_<=7&&y_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_++;y_++;
+        }
+
+        //Diagonal arriba derecha
+        x_=this.getOrigeny();
+        y_=this.getOrigenx();
+        x_--;y_++;
+        while(x_>=0&&y_<=7){
+            if(!calculo(x_,y_))//si no debe continuar paramos
+                break;
+            x_--;y_++;
+        }
+
    }
 }
