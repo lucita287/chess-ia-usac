@@ -196,9 +196,11 @@ public final class piezas_jugador {
  */
 public void IsPieza(int pieza,int x, int y){
     //System.out.print("\n"+x+"-"+y);
-    if(pieza=='P'){
+   /** if(pieza=='P'){
+
           return;
         }else{
+    * **/
     for(int i=0;i<8;i++){
         if(((peon[i].casillax==x))&&(peon[i].casillay==y)){
             if(peon[i].isVivo()){
@@ -267,7 +269,7 @@ public void IsPieza(int pieza,int x, int y){
             gui.Finish(this.ColorFicha());            
         }
 
-        }
+        
 }
 
 public String ColorFicha(){
