@@ -39,6 +39,12 @@ public class tablero {
         nturno++;
     }
 
+    public void Mover(int oy, int ox, int dy, int dx){
+            int temp=getTablero()[oy][ox];
+            getTablero()[oy][ox]=0;
+            getTablero()[dy][dx]=temp;
+    }
+
     public void Imprimir(){
         for(int i=0;i<matriz.length;i++){
             for(int j=0;j<matriz[i].length;j++){
@@ -46,10 +52,6 @@ public class tablero {
             }
             System.out.print("\n");
         }
-        ArrayList<xypieza> piezas1=this.PiezasJugadores(variable.BLANCA);
-        Print(piezas1);
-        ArrayList<xypieza> piezas2=this.PiezasJugadores(variable.NEGRA);
-        Print(piezas2);
     }
 
     private void Print(ArrayList<xypieza> piezas){
@@ -57,7 +59,8 @@ public class tablero {
             System.out.println(piezas.get(i).getPieza());
         }
     }
-    public Integer[][] GenerarTablero(int pieza){
+    public Integer[][] GenerarTablero(int pieza, int y, int x){
+        
         return null;
     }
 

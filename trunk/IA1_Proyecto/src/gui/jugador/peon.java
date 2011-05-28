@@ -71,7 +71,6 @@ public class peon extends pieza{
 
     @Override
    public void PosiblesMovimientos() {
-
         this.ClearMov();
         matrix=gui.tablero.getTablero();
 
@@ -80,26 +79,5 @@ public class peon extends pieza{
             case 1: this.MovimientosBlancos();break;
             case -1: this.MovimientosNegros();break;
         }
-
-
-
-                
-        /*if(this.isColor()){
-            if((this.getOrigeny()-1)>=0){
-            this.AddMov(this.getOrigeny()-1,this.getOrigenx());
-            }
-            if(((this.getOrigeny()-2)>=0)&&(this.getOrigeny()==6)){
-            this.AddMov(this.getOrigeny()-2,this.getOrigenx());
-            }
-
-        }else{
-            if((this.getOrigeny()+1)<=8){
-            this.AddMov(this.getOrigeny()+1,this.getOrigenx());
-            }
-            if((this.getOrigeny()+2)<=8&&(this.getOrigeny()==1)){
-            this.AddMov(this.getOrigeny()+2,this.getOrigenx());
-            }
-        }*/
-
-   }
+       }
 }

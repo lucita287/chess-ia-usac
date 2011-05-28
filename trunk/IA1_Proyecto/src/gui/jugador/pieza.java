@@ -238,12 +238,10 @@ private void Mover(){
             this.setOpaque(!variable.FONDO);
             System.out.println(((char)getLetra())+"-"+getNumero());
             this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
-            int temp=gui.tablero.getTablero()[origeny][origenx];
-            gui.tablero.getTablero()[origeny][origenx]=0;
-            gui.tablero.getTablero()[y][x]=temp;
+            gui.tablero.Mover(origeny, origenx, y, x);
             origenx=x;
             origeny=y;
-            gui.tablero.Imprimir();
+            //gui.tablero.Imprimir();
         }else{
             RegresarOrigen();
         }

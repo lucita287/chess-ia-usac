@@ -67,19 +67,5 @@ public class rey extends pieza{
          
         }
 
-
-
-
-        /**
-        this.getMov().clear();
-            this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()+1));
-            this.getMov().add(new xypieza(this.getOrigenx(),this.getOrigeny()-1));
-            this.getMov().add(new xypieza(this.getOrigenx()+1,this.getOrigeny()));
-            this.getMov().add(new xypieza(this.getOrigenx()+1,this.getOrigeny()+1));
-            this.getMov().add(new xypieza(this.getOrigenx()+1,this.getOrigeny()-1));
-            this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()));
-            this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()+1));
-            this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()-1));
-         * **/
    }
 }
