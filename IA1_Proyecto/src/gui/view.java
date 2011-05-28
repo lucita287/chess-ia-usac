@@ -40,14 +40,14 @@ public class view extends javax.swing.JFrame {
         tablero=new tablero();
         Dibujar();
           if(turno){
-            estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+            estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
-            estado.setText("Blancas");
+            estado.setText("Turno de: Blancas");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
             }else{
-            estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
-            estado.setText("Negras");
+            estado.setText("Turno de: Negras");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
             }      
     }
@@ -104,7 +104,7 @@ public class view extends javax.swing.JFrame {
         estado.setFont(new java.awt.Font("Tahoma", 1, 24));
         estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png"))); // NOI18N
-        estado.setText("Blancas");
+        estado.setText("Turno de: Blancas");
         estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         estado.setMaximumSize(new java.awt.Dimension(640, 35));
         estado.setMinimumSize(new java.awt.Dimension(100, 35));
@@ -368,14 +368,14 @@ public class view extends javax.swing.JFrame {
     }
     public void Turno(){
          if(turno){
-            estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+            estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
-            estado.setText("Blancas");
+            estado.setText("Turno de: Blancas");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
             }else{
-            estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
-            estado.setText("Negras");
+            estado.setText("Turno de: Negras");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
            // Comando("P3C5");
            // Comando("C1C6");
