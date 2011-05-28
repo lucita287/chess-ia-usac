@@ -315,9 +315,9 @@ public void MoverXY(int letra, int numero){
         origenx=this.getX()/variable.ANCHO;
         origeny=this.getY()/variable.ALTO;
         if(this.isColor()){
-        gui.tablero.test(this.pieza,origeny,origenx);
+        gui.tablero.test(0,this.pieza,origeny,origenx);
         }else{
-        gui.tablero.test((this.pieza*-1),origeny,origenx);
+        gui.tablero.test(0,(this.pieza*-1),origeny,origenx);
         }
          setBackground(variable.COLOR);
          this.setOpaque(variable.FONDO);

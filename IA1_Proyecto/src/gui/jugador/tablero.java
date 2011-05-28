@@ -65,10 +65,12 @@ public class tablero {
         }
     }
 
-    public void test(int pieza, int y, int x){
+    public void test(int r, int pieza, int y, int x){
+            if(r<=variable.PROFUNDIDAD_RAMIFICACION){
+                System.out.println("---------------RAMIFICACION: "+r+"-----------------");
             TreeMap a=this.GenerarMovimientos(pieza, y, x);
             if(a!=null){
-                System.out.println("****PIEZA PEON****");
+                System.out.println("****PIEZA: "+pieza+"****");
                 for (Iterator iterator=a.values().iterator();iterator.hasNext();) {
                     xypieza t=(xypieza)iterator.next();
                     System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
@@ -77,8 +79,10 @@ public class tablero {
                     nuevo.Mover(y,x,t.getX(), t.getY());
                     nuevo.Imprimir();
                     System.out.println("**********************************");
+                    nuevo.test(r+1, pieza, t.getX(), t.getY());
                 }
-
+            }
+            
         }
     }
     
