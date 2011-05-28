@@ -74,6 +74,7 @@ public class tablero {
                 }
             }
     }
+
     private void GenerarTablero(int r, boolean color, int pieza, int x, int y){
             TreeMap a=this.GenerarMovimientos(pieza, y, x);
             if(a!=null){
@@ -145,7 +146,7 @@ public class tablero {
         }
     }
 
-    public ArrayList<xypieza> Piezas_de_Jugador(boolean color){
+    private ArrayList<xypieza> Piezas_de_Jugador(boolean color){
         ArrayList<xypieza> piezas=new ArrayList();
         
         for(int i=0;i<matriz.length;i++){
