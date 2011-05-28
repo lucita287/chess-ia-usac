@@ -28,7 +28,7 @@ public class alfil extends pieza{
     }
  
     @Override
-   public void PosiblesMovimientos() {
+     public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();
         matrix=gui.tablero.getTablero();
         
