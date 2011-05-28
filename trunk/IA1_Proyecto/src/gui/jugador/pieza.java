@@ -241,7 +241,7 @@ private void Mover(){
             gui.tablero.Mover(origeny, origenx, y, x);
             origenx=x;
             origeny=y;
-            //gui.tablero.Imprimir();
+            gui.tablero.Imprimir();
         }else{
             RegresarOrigen();
         }
