@@ -369,7 +369,7 @@ public void MoverXY(int letra, int numero){
  * @return
  */
     public void AddMov(int x, int y) {
-        System.out.println("**>"+x+"-"+y);
+        //System.out.println("**>"+x+"-"+y);
         movimientos.put(x+","+y, new xypieza(x,y));
     }
 
