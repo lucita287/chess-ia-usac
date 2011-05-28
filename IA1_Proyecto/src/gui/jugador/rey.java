@@ -18,7 +18,7 @@ public class rey extends pieza{
 
     public rey(boolean color, view gui, int x, int y) {
         image_drive image_drive=new image_drive();
-        super.setPieza(color,'R',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getRey(color),gui);
+        super.setPieza(color,variable.BREY,variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getRey(color),gui);
 
                 /*David*/
         if(color)
@@ -27,6 +27,12 @@ public class rey extends pieza{
             mi_color=-1;
     }
  
+    public rey(int color, int x, int y) {
+        mi_color=color;
+        this.setOrigenx(x);
+        this.setOrigeny(y);
+    }
+
     @Override
      public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();

@@ -310,11 +310,15 @@ public void MoverXY(int letra, int numero){
  private void Pressed(MouseEvent evt) {
         x=evt.getX();
         y=evt.getY();
-        
         casillax=this.getX()/variable.ANCHO;
         casillay=this.getY()/variable.ALTO;
         origenx=this.getX()/variable.ANCHO;
         origeny=this.getY()/variable.ALTO;
+        if(this.isColor()){
+        gui.tablero.test(this.pieza,origeny,origenx);
+        }else{
+        gui.tablero.test((this.pieza*-1),origeny,origenx);
+        }
          setBackground(variable.COLOR);
          this.setOpaque(variable.FONDO);
     }
@@ -431,10 +435,10 @@ public void MoverXY(int letra, int numero){
 
         if(movimientos.containsKey(y+","+x)){
             if(gui.turno){
-                    gui.jugador2.IsPieza(this.pieza,x, y);
+                    gui.jugador2.IsPieza(x, y);
                     return true;
                 }else{
-                    gui.jugador1.IsPieza(this.pieza,x, y);
+                    gui.jugador1.IsPieza(x, y);
                     return true;
                 }
         }else{
@@ -442,7 +446,8 @@ public void MoverXY(int letra, int numero){
         }
     }
 
-    public TreeMap getMovimientos() {
+    public TreeMap getMovimientos(Integer[][] tablero) {
+        this.PosiblesMovimientos(tablero);
         return movimientos;
     }
 }

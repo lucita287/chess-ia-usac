@@ -18,7 +18,7 @@ public class torre extends pieza{
 
     public torre(boolean color, view gui, int x, int y) {
         image_drive image_drive=new image_drive();
-        super.setPieza(color,'T',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getTorre(color),gui);
+        super.setPieza(color,variable.BTORRE,variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getTorre(color),gui);
 
         /*David*/
         if(color)
