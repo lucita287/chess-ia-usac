@@ -5,6 +5,7 @@
 
 package gui.jugador;
 
+import gui.edd.Nodo;
 import gui.resources.variable;
 import java.util.ArrayList;
 
@@ -59,12 +60,21 @@ public class tablero {
             System.out.println(piezas.get(i).getPieza());
         }
     }
-    public Integer[][] GenerarTablero(int pieza, int y, int x){
-        
+
+    public ArrayList GenerarMovimientos(int pieza, int y, int x){
+
+        switch(pieza){
+            case variable.NPEON:
+                peon t=new peon(-1,x,y);
+                return (ArrayList) t.getMovimientos().values();
+            case variable.BPEON:
+                t=new peon(1,x,y);
+                return (ArrayList) t.getMovimientos().values();
+        }
         return null;
     }
 
-    public ArrayList<xypieza> PiezasJugadores(boolean color){
+    public ArrayList<xypieza> Piezas_de_Jugador(boolean color){
         ArrayList<xypieza> piezas=new ArrayList();
         
         for(int i=0;i<matriz.length;i++){
