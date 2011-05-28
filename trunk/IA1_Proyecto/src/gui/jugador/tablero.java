@@ -8,6 +8,8 @@ package gui.jugador;
 import gui.edd.Nodo;
 import gui.resources.variable;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.TreeMap;
 
 /**
  *
@@ -17,6 +19,14 @@ public class tablero {
 
     private Integer matriz[][];
     private int nturno;
+
+    public tablero(Integer [][] m) {
+        matriz=new Integer[8][8];
+        for(int i=0;i<m.length;i++){
+            System.arraycopy(m[i], 0, matriz[i], 0, m.length);
+        }
+        nturno=0;
+    }
 
     public tablero() {
         matriz=new Integer[8][8];
@@ -55,23 +65,72 @@ public class tablero {
         }
     }
 
+    public void test(int pieza, int y, int x){
+            TreeMap a=this.GenerarMovimientos(pieza, y, x);
+            if(a!=null){
+                System.out.println("****PIEZA PEON****");
+                for (Iterator iterator=a.values().iterator();iterator.hasNext();) {
+                    xypieza t=(xypieza)iterator.next();
+                    System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
+                    System.out.println("************OPCION***************");
+                    tablero nuevo=new tablero(matriz);
+                    nuevo.Mover(y,x,t.getX(), t.getY());
+                    nuevo.Imprimir();
+                    System.out.println("**********************************");
+                }
+
+        }
+    }
+    
     private void Print(ArrayList<xypieza> piezas){
+
         for(int i=0;i<piezas.size();i++){
             System.out.println(piezas.get(i).getPieza());
         }
     }
 
-    public ArrayList GenerarMovimientos(int pieza, int y, int x){
+    public TreeMap GenerarMovimientos(int pieza, int y, int x){
 
         switch(pieza){
             case variable.NPEON:
-                peon t=new peon(-1,x,y);
-                return (ArrayList) t.getMovimientos().values();
+                peon t1=new peon(-1,x,y);
+                return t1.getMovimientos(getTablero());
             case variable.BPEON:
-                t=new peon(1,x,y);
-                return (ArrayList) t.getMovimientos().values();
+                t1=new peon(1,x,y);
+                return t1.getMovimientos(getTablero());
+            case variable.NTORRE:
+                torre t2=new torre(-1,x,y);
+                return t2.getMovimientos(getTablero());
+            case variable.BTORRE:
+                t2=new torre(1,x,y);
+                return t2.getMovimientos(getTablero());
+            case variable.NALFIL:
+                alfil t3=new alfil(-1,x,y);
+                return t3.getMovimientos(getTablero());
+            case variable.BALFIL:
+                t3=new alfil(1,x,y);
+                return t3.getMovimientos(getTablero());
+            case variable.NCABALLO:
+                caballo t4=new caballo(-1,x,y);
+                return t4.getMovimientos(getTablero());
+            case variable.BCABALLO:
+                t4=new caballo(1,x,y);
+                return t4.getMovimientos(getTablero());
+            case variable.NDAMA:
+                reina t5=new reina(-1,x,y);
+                return t5.getMovimientos(getTablero());
+            case variable.BDAMA:
+                t5=new reina(1,x,y);
+                return t5.getMovimientos(getTablero());
+            case variable.NREY:
+                rey t6=new rey(-1,x,y);
+                return t6.getMovimientos(getTablero());
+            case variable.BREY:
+                t6=new rey(1,x,y);
+                return t6.getMovimientos(getTablero());
+            default:
+                return null;
         }
-        return null;
     }
 
     public ArrayList<xypieza> Piezas_de_Jugador(boolean color){
