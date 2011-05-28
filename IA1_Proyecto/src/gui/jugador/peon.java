@@ -16,7 +16,7 @@ import gui.view;
  */
 public class peon extends pieza{
 
-    public peon(boolean color, view gui, int x, int y) {
+  public peon(boolean color, view gui, int x, int y) {
         image_drive image_drive=new image_drive();
         super.setPieza(color,'P',variable.VIVA,x*variable.ANCHO+variable.DP_ANCHO,y*variable.ALTO+variable.DP_ALTO,image_drive.getPeon(color),gui);
     
@@ -26,7 +26,13 @@ public class peon extends pieza{
             mi_color=-1;
     }
 
-   public void MovimientosBlancos(){
+   public peon(int color, int x, int y) {
+        mi_color=color;
+        this.setOrigenx(x);
+        this.setOrigeny(y);
+    }
+
+   private void MovimientosBlancos(){
        int x=this.getOrigeny();
        int y=this.getOrigenx();
        
@@ -47,7 +53,7 @@ public class peon extends pieza{
         this.AddMov(x-1,y+1);
    }
 
-   public void MovimientosNegros(){
+   private void MovimientosNegros(){
        int x=this.getOrigeny();
        int y=this.getOrigenx();
 
@@ -70,9 +76,9 @@ public class peon extends pieza{
 
 
     @Override
-   public void PosiblesMovimientos() {
+   public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();
-        matrix=gui.tablero.getTablero();
+        this.matrix=tablero;
 
         //Dependiendo de el color debe evaluarse
         switch(mi_color)   {
