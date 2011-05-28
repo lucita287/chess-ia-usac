@@ -54,17 +54,5 @@ public class caballo extends pieza{
         if((x-2>=0)&&(y-1>=0))
             calculo(x-2,y-1);
 
-
-        /**
-        this.getMov().clear();
-            this.getMov().add(new xypieza(this.getOrigenx()+2,this.getOrigeny()-1));
-            this.getMov().add(new xypieza(this.getOrigenx()-2,this.getOrigeny()-1));
-            this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()-2));
-            this.getMov().add(new xypieza(this.getOrigenx()+1,this.getOrigeny()-2));
-            this.getMov().add(new xypieza(this.getOrigenx()+2,this.getOrigeny()+1));
-            this.getMov().add(new xypieza(this.getOrigenx()-2,this.getOrigeny()+1));
-            this.getMov().add(new xypieza(this.getOrigenx()+1,this.getOrigeny()+2));
-            this.getMov().add(new xypieza(this.getOrigenx()-1,this.getOrigeny()+2));
-        **/
    }
 }
