@@ -5,7 +5,6 @@
 
 package gui.jugador;
 
-import gui.edd.Nodo;
 import gui.resources.variable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -65,35 +64,44 @@ public class tablero {
         }
     }
 
-    public void test(int r, int pieza, int y, int x){
-            if(r<=variable.PROFUNDIDAD_RAMIFICACION){
-                System.out.println("---------------RAMIFICACION: "+r+"-----------------");
-            TreeMap a=this.GenerarMovimientos(pieza, y, x);
-            if(a!=null){
-                System.out.println("****PIEZA: "+pieza+"****");
-                for (Iterator iterator=a.values().iterator();iterator.hasNext();) {
-                    xypieza t=(xypieza)iterator.next();
-                    System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
-                    System.out.println("************OPCION***************");
-                    tablero nuevo=new tablero(matriz);
-                    nuevo.Mover(y,x,t.getX(), t.getY());
-                    nuevo.Imprimir();
-                    System.out.println("**********************************");
-                    nuevo.test(r+1, pieza, t.getX(), t.getY());
+    public void GenerarArbol(int r, boolean color, Integer [][]tablero){
+
+            if(r<variable.PROFUNDIDAD_RAMIFICACION){
+                tablero nuevo=new tablero(tablero);
+                ArrayList<xypieza> t=this.Piezas_de_Jugador(color);
+                for(int i=0;i<t.size();i++){
+                    nuevo.GenerarTablero(r, color, t.get(i).getPieza(), t.get(i).getX(), t.get(i).getY());
                 }
             }
-            
-        }
+    }
+    private void GenerarTablero(int r, boolean color, int pieza, int x, int y){
+            TreeMap a=this.GenerarMovimientos(pieza, y, x);
+            if(a!=null){
+                if(a.size()!=0){
+                //System.out.println("---------------RAMIFICACION: "+r+"-----------------");
+                //System.out.println("****PIEZA: "+pieza+"****"+y+"-"+x);
+                }
+                for (Iterator iterator=a.values().iterator();iterator.hasNext();) {
+                    xypieza t=(xypieza)iterator.next();
+                    //System.out.println("************OPCION***************");
+                    //System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
+                    tablero nuevo=new tablero(matriz);
+                    nuevo.Mover(y,x,t.getX(), t.getY());
+                    //nuevo.Imprimir();
+                    nuevo.GenerarArbol(r+1, !color, nuevo.getTablero());
+                }
+
+          }
     }
     
-    private void Print(ArrayList<xypieza> piezas){
+    public void Print(ArrayList<xypieza> piezas){
 
         for(int i=0;i<piezas.size();i++){
-            System.out.println(piezas.get(i).getPieza());
+            System.out.println(piezas.get(i).getPieza()+" Y:"+piezas.get(i).getY()+" X:"+piezas.get(i).getX());
         }
     }
 
-    public TreeMap GenerarMovimientos(int pieza, int y, int x){
+    private TreeMap GenerarMovimientos(int pieza, int y, int x){
 
         switch(pieza){
             case variable.NPEON:

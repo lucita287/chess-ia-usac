@@ -6,6 +6,7 @@
 package gui;
 
 import gui.resources.lookandfeel;
+import gui.resources.variable;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
@@ -34,7 +35,7 @@ public class main {
 
             SwingUtilities.invokeLater(new Runnable() {
               public void run() {
-               new view().setVisible(true);
+               new view(variable.HUMANOVRSHUMANO,variable.NEGRA).setVisible(true);
               }
             });
     

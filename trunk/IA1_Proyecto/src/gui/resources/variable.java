@@ -14,7 +14,7 @@ public class variable {
     public static final int ALTO=80;
     public static final int ANCHO=80;
 
-    public static final int PROFUNDIDAD_RAMIFICACION=3;
+    public static final int PROFUNDIDAD_RAMIFICACION=2;
     
     public static final int PIEZA_ALTO=60;
     public static final int PIEZA_ANCHO=60;
@@ -43,6 +43,9 @@ public class variable {
 
     public static final boolean ARRIBA=true;
     public static final boolean ABAJO=false;
+
+    public static final boolean HUMANOVRSHUMANO=false;
+    public static final boolean CPUVRSHUMANO=true;
 
     public static final boolean NOFONDO=false;
     public static final boolean FONDO=true;

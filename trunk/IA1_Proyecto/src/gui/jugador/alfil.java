@@ -33,13 +33,12 @@ public class alfil extends pieza{
         this.setOrigeny(y);
     }
     @Override
-     public void PosiblesMovimientos(Integer[][] tablero) {
+   public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();
-        matrix=gui.tablero.getTablero();
+        this.matrix=tablero;
         
         int x_=this.getOrigeny();
         int y_=this.getOrigenx();
-        System.out.println(x_+"***"+y_);
         //Diagonal arriba izquierda
         x_--;y_--;
         while(x_>=0&&y_>=0){
