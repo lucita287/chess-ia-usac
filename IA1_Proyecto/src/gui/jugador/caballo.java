@@ -27,9 +27,9 @@ public class caballo extends pieza{
     }
  
     @Override
-   public void PosiblesMovimientos() {
+     public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();
-        matrix=gui.tablero.getTablero();
+        this.matrix=tablero;
 
         int x=this.getOrigeny();
         int y=this.getOrigenx();
