@@ -136,6 +136,14 @@ public class pieza extends JLabel{
 
     }
 
+    public void setOrigenx(int origenx) {
+        this.origenx = origenx;
+    }
+
+    public void setOrigeny(int origeny) {
+        this.origeny = origeny;
+    }
+
     public boolean isTurno() {
         return gui.turno;
     }
@@ -204,7 +212,7 @@ private void Exited(java.awt.event.MouseEvent evt) {
 
 
 
-public void PosiblesMovimientos(){
+public void PosiblesMovimientos(Integer[][] matriz){
 
 }
 /**
@@ -257,7 +265,7 @@ public void MoverXY(int letra, int numero){
         casillay=y;
         setBackground(variable.COLOR);
         this.setOpaque(true);
-        PosiblesMovimientos();
+        PosiblesMovimientos(gui.tablero.getTablero());
         Mover();
         //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
         Actualizar();
@@ -274,7 +282,7 @@ public void MoverXY(int letra, int numero){
         casillay=this.getY()/variable.ALTO;
         setBackground(variable.COLOR);
         this.setOpaque(true);
-        PosiblesMovimientos();
+        PosiblesMovimientos(gui.tablero.getTablero());
         Mover();
         Actualizar();
       }
@@ -432,8 +440,9 @@ public void MoverXY(int letra, int numero){
         }else{
             return false;
         }
-
-
     }
 
+    public TreeMap getMovimientos() {
+        return movimientos;
+    }
 }
