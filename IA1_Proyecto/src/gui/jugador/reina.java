@@ -26,11 +26,16 @@ public class reina extends pieza{
         else
             mi_color=-1;
     }
- 
+
+    public reina(int color, int x, int y) {
+        mi_color=color;
+        this.setOrigenx(x);
+        this.setOrigeny(y);
+    }
     @Override
-   public void PosiblesMovimientos() {
+   public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();
-        matrix=gui.tablero.getTablero();
+        this.matrix=tablero;
 
         int x_=this.getOrigeny();
         int y_=this.getOrigenx();
@@ -71,7 +76,7 @@ public class reina extends pieza{
                 break;
             y_--;
         }
-        
+
         x_=this.getOrigeny();
         y_=this.getOrigenx();
         //Diagonal arriba izquierda
