@@ -21,7 +21,7 @@ import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 
-public class view extends javax.swing.JFrame {
+public final class view extends javax.swing.JFrame {
 
     private JLabel fondo[][]=new JLabel[8][8];
     private JLabel muertan[][]=new JLabel[4][4];
@@ -39,17 +39,7 @@ public class view extends javax.swing.JFrame {
         setBounds(new java.awt.Rectangle(150, 0, 950, 770));
         tablero=new tablero();
         Dibujar();
-          if(turno){
-            estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-            estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
-            estado.setText("Turno de: Blancas");
-            estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-            }else{
-            estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-            estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
-            estado.setText("Turno de: Negras");
-            estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-            }      
+        Turno();
     }
 
     /** This method is called from within the constructor to
@@ -370,16 +360,14 @@ public class view extends javax.swing.JFrame {
          if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
-            estado.setText("Turno de: Blancas");
+            estado.setText(" Turno de: Blancas");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
             }else{
             estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
-            estado.setText("Turno de: Negras");
-            estado.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-           // Comando("P3C5");
-           // Comando("C1C6");
-            }
+            estado.setText(" Turno de: Negras");
+            estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+            }      
     }
 
 private void Dibujar(){
