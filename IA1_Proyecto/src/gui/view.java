@@ -28,19 +28,25 @@ public final class view extends javax.swing.JFrame {
     private JLabel muertab[][]=new JLabel[4][4];
     public int m_negra=0, m_blanca=0;
     private image_drive image_drive=new image_drive();
-    public boolean turno, fin=false;
+    public boolean turno, fin;
     public piezas_jugador jugador1;
     public piezas_jugador jugador2;
     public tablero tablero;
+    public boolean colorjugador1;
+    public boolean cpu;
     
     /** Creates new form view */
-    public view() {
+    public view(boolean humanovrscpu, boolean colorhumano) {
         initComponents();
         setBounds(new java.awt.Rectangle(150, 0, 950, 770));
         tablero=new tablero();
+        this.cpu=humanovrscpu;
+        this.colorjugador1=colorhumano;
+        turno=variable.BLANCA;
+        
         Dibujar();
         Turno();
-    }
+    }      
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -70,9 +76,6 @@ public final class view extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         rendirse = new javax.swing.JMenuItem();
-        COLOR = new javax.swing.JMenu();
-        RBLANCAS = new javax.swing.JCheckBoxMenuItem();
-        RNEGRAS = new javax.swing.JCheckBoxMenuItem();
         reiniciar = new javax.swing.JMenuItem();
         salir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -195,28 +198,6 @@ public final class view extends javax.swing.JFrame {
         });
         jMenu1.add(rendirse);
 
-        COLOR.setText("Color de Piezas");
-        COLOR.setEnabled(false);
-
-        RBLANCAS.setSelected(true);
-        RBLANCAS.setText("Blancas");
-        RBLANCAS.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                RBLANCASStateChanged(evt);
-            }
-        });
-        COLOR.add(RBLANCAS);
-
-        RNEGRAS.setText("Negras");
-        RNEGRAS.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                RNEGRASStateChanged(evt);
-            }
-        });
-        COLOR.add(RNEGRAS);
-
-        jMenu1.add(COLOR);
-
         reiniciar.setText("Reiniciar");
         reiniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,12 +261,10 @@ public final class view extends javax.swing.JFrame {
         if(n==0){
             System.exit(1);
         }
-        COLOR.setEnabled(true);
         fin=true;
     }
 
     public void Reiniciar(){
-        COLOR.setEnabled(false);
         fondo=new JLabel[8][8];
         muertan=new JLabel[4][4];
         muertab=new JLabel[4][4];
@@ -313,18 +292,6 @@ public final class view extends javax.swing.JFrame {
     private void Reiniciar(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Reiniciar
         Reiniciar();
     }//GEN-LAST:event_Reiniciar
-
-    private void RBLANCASStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RBLANCASStateChanged
-        RNEGRAS.setSelected(false);
-        turno=variable.BLANCA;
-        Turno();
-    }//GEN-LAST:event_RBLANCASStateChanged
-
-    private void RNEGRASStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_RNEGRASStateChanged
-        RBLANCAS.setSelected(false);
-        turno=variable.NEGRA;
-        Turno();
-    }//GEN-LAST:event_RNEGRASStateChanged
 
     private void rendirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rendirseActionPerformed
      if(turno){
@@ -357,6 +324,14 @@ public final class view extends javax.swing.JFrame {
             }
     }
     public void Turno(){
+        if((this.cpu)&&this.turno!=this.colorjugador1){
+            System.out.println("TURNO DE CPU");
+            tablero.GenerarArbol(0,turno, tablero.getTablero());
+            
+            //tablero.Print(tablero.Piezas_de_Jugador(turno));
+            //tablero.GenerarTablero(3, 7, 2);
+            turno=!turno;
+        }
          if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
@@ -373,7 +348,6 @@ public final class view extends javax.swing.JFrame {
 private void Dibujar(){
         DibujarPiezas();
         DibujarTablero();
-        turno=RBLANCAS.isSelected();
         DibujarMuertas();
         Tablero.updateUI();
         mnegras.updateUI();
@@ -495,9 +469,6 @@ public void AgregarMuerto(boolean color, Icon pieza){
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu COLOR;
-    private javax.swing.JCheckBoxMenuItem RBLANCAS;
-    private javax.swing.JCheckBoxMenuItem RNEGRAS;
     public javax.swing.JPanel Tablero;
     private javax.swing.JTextField consola;
     public javax.swing.JLabel estado;

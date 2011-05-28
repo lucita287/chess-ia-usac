@@ -242,16 +242,18 @@ private void Turno(){
  */
 private void Mover(){
         if(IsMovimientoValido()){
-            Turno();
             this.setOpaque(!variable.FONDO);
             System.out.println(((char)getLetra())+"-"+getNumero());
             this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
             gui.tablero.Mover(origeny, origenx, y, x);
             origenx=x;
             origeny=y;
-            gui.tablero.Imprimir();
+            Actualizar();
+            Turno();
+            //gui.tablero.Imprimir();
         }else{
             RegresarOrigen();
+            Actualizar();
         }
 }
 
@@ -268,7 +270,6 @@ public void MoverXY(int letra, int numero){
         PosiblesMovimientos(gui.tablero.getTablero());
         Mover();
         //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
-        Actualizar();
 }
 /**
  *
@@ -284,7 +285,6 @@ public void MoverXY(int letra, int numero){
         this.setOpaque(true);
         PosiblesMovimientos(gui.tablero.getTablero());
         Mover();
-        Actualizar();
       }
 /**
  * Cuando se Extrae la Ficha
@@ -314,11 +314,12 @@ public void MoverXY(int letra, int numero){
         casillay=this.getY()/variable.ALTO;
         origenx=this.getX()/variable.ANCHO;
         origeny=this.getY()/variable.ALTO;
+        /**
         if(this.isColor()){
         gui.tablero.test(0,this.pieza,origeny,origenx);
         }else{
         gui.tablero.test(0,(this.pieza*-1),origeny,origenx);
-        }
+        }**/
          setBackground(variable.COLOR);
          this.setOpaque(variable.FONDO);
     }
