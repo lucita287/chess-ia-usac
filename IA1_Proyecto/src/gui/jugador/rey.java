@@ -28,10 +28,9 @@ public class rey extends pieza{
     }
  
     @Override
-   public void PosiblesMovimientos() {
-
+     public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();
-        matrix=gui.tablero.getTablero();
+        this.matrix=tablero;
 
         int x_=this.getOrigeny();
         int y_=this.getOrigenx();
