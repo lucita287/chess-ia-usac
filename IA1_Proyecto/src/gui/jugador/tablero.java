@@ -85,16 +85,16 @@ public class tablero {
                 for (Iterator iterator=a.values().iterator();iterator.hasNext();) {
                     xypieza t=(xypieza)iterator.next();
                     //System.out.println("************OPCION***************");
-                    System.out.println("---------------RAMIFICACION: "+(r+1)+"-----------------");
-                    System.out.println("****PIEZA: "+pieza+"****"+y+"-"+x);
-                    System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
+                    //System.out.println("---------------RAMIFICACION: "+(r+1)+"-----------------");
+                    //System.out.println("****PIEZA: "+pieza+"****"+y+"-"+x);
+                    //System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
                     tablero nuevo=new tablero(matriz);
                     nuevo.Mover(y,x,t.getX(), t.getY());
                     //nuevo.Imprimir();
                                 if((r+1)<variable.PROFUNDIDAD_RAMIFICACION){
                                     nuevo.GenerarArbol(r+1, !color, nuevo.getTablero());
                                 }else{
-                                System.out.println("Utilidad: "+new Utilidad(this.matriz).getUtilidad());
+                                //System.out.println("Utilidad: "+new Utilidad(this.matriz).getUtilidad());
                                 }
                 }
 

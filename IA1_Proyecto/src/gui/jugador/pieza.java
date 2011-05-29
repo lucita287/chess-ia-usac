@@ -5,9 +5,9 @@
 
 package gui.jugador;
 
-import gui.edd.Utilidad;
 import gui.resources.variable;
 import gui.view;
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.TreeMap;
 import javax.swing.Icon;
@@ -32,7 +32,7 @@ public class pieza extends JLabel{
     private int pieza;
     public view gui;
     private TreeMap movimientos= new TreeMap();
-    private boolean inDrag = false;
+    private boolean mov = false;
 
     public pieza() {
     }
@@ -198,6 +198,11 @@ public class pieza extends JLabel{
 private void Exited(java.awt.event.MouseEvent evt) {
        // this.setBackground(new java.awt.Color(240, 240, 240));
         this.setOpaque(!variable.FONDO);
+        if(mov){
+            mov=false;
+        this.Turno();
+        }
+
 }
 /**
  *
@@ -241,7 +246,7 @@ private void Turno(){
 /**
  * Mueve la Pieza a una posicion que sea Valida
  */
-private void Mover(){
+private boolean Mover(){
         if(IsMovimientoValido()){
             this.setOpaque(!variable.FONDO);
             System.out.println(((char)getLetra())+"-"+getNumero());
@@ -250,11 +255,13 @@ private void Mover(){
             origenx=x;
             origeny=y;           
             Actualizar();
-            Turno();
+            return true;
+            //Turno();
             //gui.tablero.Imprimir();
         }else{
             RegresarOrigen();
             Actualizar();
+            return false;
         }
 }
 
@@ -270,7 +277,7 @@ public void MoverXY(int letra, int numero){
         this.setOpaque(true);
         PosiblesMovimientos(gui.tablero.getTablero());
         
-        Mover();
+        mov=Mover();
         //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
 }
 /**
@@ -278,7 +285,6 @@ public void MoverXY(int letra, int numero){
  * @param evt
  */
     private void Released(MouseEvent evt) {
-        inDrag = false;
         x=(evt.getX()+this.getX())/variable.ANCHO;
         y=(evt.getY()+this.getY())/variable.ALTO;
         casillax=this.getX()/variable.ANCHO;
@@ -286,7 +292,11 @@ public void MoverXY(int letra, int numero){
         setBackground(variable.COLOR);
         this.setOpaque(true);
         PosiblesMovimientos(gui.tablero.getTablero());
-        Mover();
+        mov=Mover();
+        /**if(mov){
+            mov=false;
+        this.Turno();
+        }**/
       }
 /**
  * Cuando se Extrae la Ficha
@@ -295,15 +305,10 @@ public void MoverXY(int letra, int numero){
     private void Dragged(MouseEvent evt) {
         int s1=evt.getX()+this.getX();
         int s2=evt.getY()+this.getY();
-          //this.setLocation(s1-40,s2-40);
-          this.setLocation(s1,s2);
+          this.setLocation(s1-variable.PIEZA_ANCHO/2,s2-variable.PIEZA_ALTO/2);
+          //this.setLocation(s1,s2); //MOUSE CENTRO
           setBackground(variable.COLOR);
           this.setOpaque(variable.FONDO);
-          if (inDrag) {
-          this.repaint();
-          gui.Tablero.repaint();
-          }
-
       }
         /**
      *
@@ -316,6 +321,9 @@ public void MoverXY(int letra, int numero){
         casillay=this.getY()/variable.ALTO;
         origenx=this.getX()/variable.ANCHO;
         origeny=this.getY()/variable.ALTO;
+
+        this.getParent().setComponentZOrder(this, 1);
+ 
         /**
         if(this.isColor()){
         gui.tablero.test(0,this.pieza,origeny,origenx);
@@ -324,6 +332,7 @@ public void MoverXY(int letra, int numero){
         }**/
          setBackground(variable.COLOR);
          this.setOpaque(variable.FONDO);
+         this.updateUI();
     }
 /**
  * POSICION EN X DE LA PIEZA
