@@ -80,17 +80,22 @@ public class tablero {
             TreeMap a=this.GenerarMovimientos(pieza, y, x);
             if(a!=null){
                 if(a.size()!=0){
-                //System.out.println("---------------RAMIFICACION: "+r+"-----------------");
-                //System.out.println("****PIEZA: "+pieza+"****"+y+"-"+x);
+                //System.out.println("---------------RAMIFICACION: "+(r+1)+"-----------------");
                 }
                 for (Iterator iterator=a.values().iterator();iterator.hasNext();) {
                     xypieza t=(xypieza)iterator.next();
                     //System.out.println("************OPCION***************");
-                    //System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
+                    System.out.println("---------------RAMIFICACION: "+(r+1)+"-----------------");
+                    System.out.println("****PIEZA: "+pieza+"****"+y+"-"+x);
+                    System.out.println(y+" "+x+"***"+t.getX()+" "+t.getY());
                     tablero nuevo=new tablero(matriz);
                     nuevo.Mover(y,x,t.getX(), t.getY());
                     //nuevo.Imprimir();
-                    nuevo.GenerarArbol(r+1, !color, nuevo.getTablero());
+                                if((r+1)<variable.PROFUNDIDAD_RAMIFICACION){
+                                    nuevo.GenerarArbol(r+1, !color, nuevo.getTablero());
+                                }else{
+                                System.out.println("Utilidad: "+new Utilidad(this.matriz).getUtilidad());
+                                }
                 }
 
           }
