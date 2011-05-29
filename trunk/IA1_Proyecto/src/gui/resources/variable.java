@@ -53,13 +53,6 @@ public class variable {
     public static final boolean MIN=false;
     public static final boolean MAX=true;
 
-    public static final int PESO_REY=50;
-    public static final int PESO_REINA=10;
-    public static final int PESO_TORRE=5;
-    public static final int PESO_ALFIL=3;
-    public static final int PESO_CABALLO=3;
-    public static final int PESO_PEON=1;
-
     public static final java.awt.Color COLOR =new java.awt.Color(95, 43, 4);
     //public static final java.awt.Color COLOR =new java.awt.Color(240, 240, 240);
 
