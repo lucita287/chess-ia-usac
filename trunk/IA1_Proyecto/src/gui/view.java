@@ -94,10 +94,11 @@ public final class view extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
 
-        estado.setFont(new java.awt.Font("Tahoma", 1, 24));
+        estado.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png"))); // NOI18N
         estado.setText("Turno de: Blancas");
+        estado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         estado.setMaximumSize(new java.awt.Dimension(640, 35));
         estado.setMinimumSize(new java.awt.Dimension(100, 35));
@@ -148,7 +149,7 @@ public final class view extends javax.swing.JFrame {
         });
         jSplitPane4.setTopComponent(consola);
 
-        estado1.setFont(new java.awt.Font("Tahoma", 1, 24));
+        estado1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         estado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         estado1.setText("Piezas Muertas");
         estado1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -328,15 +329,7 @@ public final class view extends javax.swing.JFrame {
     }
     
      public void Turno(){
-        if((this.cpu)&&this.turno!=this.colorjugador1){
-            System.out.println("TURNO DE CPU");
-            tablero.GenerarArbol(0,turno, tablero.getTablero());
-            
-            //tablero.Print(tablero.Piezas_de_Jugador(turno));
-            //tablero.GenerarTablero(3, 7, 2);
-            turno=!turno;
-        }
-        tablero.GenerarArbol(0,turno, tablero.getTablero());
+
          if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
@@ -347,7 +340,12 @@ public final class view extends javax.swing.JFrame {
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
             estado.setText(" Turno de: Negras");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-            }      
+            }
+        if((this.cpu)&&this.turno!=this.colorjugador1){
+            System.out.println("TURNO DE CPU");
+            tablero.GenerarArbol(0,turno, tablero.getTablero());
+            turno=!turno;
+        }
     }
 
 private void Dibujar(){
