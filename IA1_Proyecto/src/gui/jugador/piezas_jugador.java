@@ -269,7 +269,7 @@ public void IsPieza(int x, int y){
         
 }
 
-public String ColorFicha(){
+ public String ColorFicha(){
     if(this.color){
     return "Blancas";
     }else{

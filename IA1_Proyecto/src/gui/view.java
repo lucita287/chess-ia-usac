@@ -311,6 +311,7 @@ public final class view extends javax.swing.JFrame {
     }//GEN-LAST:event_consolaKeyPressed
 
     public void Comando(String a){
+ 
          if(a.length()>4){
                 consola.setText("ERROR!!!");
                 consola.selectAll();
@@ -319,11 +320,14 @@ public final class view extends javax.swing.JFrame {
                 jugador1.Mover(a.charAt(0), (a.charAt(1)-48), a.charAt(2), 9-(a.charAt(3)-48));
             }else{
                 jugador2.Mover(a.charAt(0), (a.charAt(1)-48), a.charAt(2), 9-(a.charAt(3)-48));
+            }            
             }
-            consola.setText("");
-            }
+
+     
+         consola.setText("");
     }
-    public void Turno(){
+    
+     public void Turno(){
         if((this.cpu)&&this.turno!=this.colorjugador1){
             System.out.println("TURNO DE CPU");
             tablero.GenerarArbol(0,turno, tablero.getTablero());
@@ -332,6 +336,7 @@ public final class view extends javax.swing.JFrame {
             //tablero.GenerarTablero(3, 7, 2);
             turno=!turno;
         }
+        tablero.GenerarArbol(0,turno, tablero.getTablero());
          if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
