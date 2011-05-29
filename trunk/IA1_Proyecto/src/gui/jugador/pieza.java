@@ -5,6 +5,7 @@
 
 package gui.jugador;
 
+import gui.edd.Utilidad;
 import gui.resources.variable;
 import gui.view;
 import java.awt.event.MouseEvent;
@@ -247,7 +248,7 @@ private void Mover(){
             this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
             gui.tablero.Mover(origeny, origenx, y, x);
             origenx=x;
-            origeny=y;
+            origeny=y;           
             Actualizar();
             Turno();
             //gui.tablero.Imprimir();
@@ -268,6 +269,7 @@ public void MoverXY(int letra, int numero){
         setBackground(variable.COLOR);
         this.setOpaque(true);
         PosiblesMovimientos(gui.tablero.getTablero());
+        
         Mover();
         //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
 }
@@ -451,4 +453,10 @@ public void MoverXY(int letra, int numero){
         this.PosiblesMovimientos(tablero);
         return movimientos;
     }
+
+    public int ContarMovimientos(Integer[][] tablero) {
+        this.PosiblesMovimientos(tablero);
+        return movimientos.size();
+    }
+
 }

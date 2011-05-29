@@ -5,6 +5,7 @@
 
 package gui.jugador;
 
+import gui.edd.Utilidad;
 import gui.resources.variable;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -164,4 +165,7 @@ public class tablero {
         return piezas;
     }
 
+    public int Utilidad(){
+        return new Utilidad(this.matriz).getUtilidad();
+    }
 }
