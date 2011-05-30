@@ -165,7 +165,16 @@ public final class Utilidad {
         }
         }
         }
-        this.utilidad=this.UtilidadBlancas()*this.getRey_blancos()-this.UtilidadNegras()*this.getRey_negros();
+        if(this.getRey_blancos()==0){
+            this.utilidad=-9999;
+        }else{
+            if(this.getRey_negros()==0){
+            this.utilidad=9999;
+            }else{
+            this.utilidad=this.UtilidadBlancas()*this.getRey_blancos()-this.UtilidadNegras()*this.getRey_negros();
+            }
+        }
+        
         //this.Ver();
     }
 
