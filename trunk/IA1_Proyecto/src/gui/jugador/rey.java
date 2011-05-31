@@ -73,7 +73,7 @@ public class rey extends pieza{
     public boolean pseudo_analisis(int x, int y,int pieza1, int pieza2){
         if(es_oponente_pieza(x,y,pieza1)||es_oponente_pieza(x,y,pieza2))
         {
-                peligro.put(x+","+y,new xypieza(x,y));
+                add_peligro(x,y);
                 return false;
         }
         else if(es_aliado(x,y))
@@ -81,35 +81,41 @@ public class rey extends pieza{
         return true;
     }
     
+    //Agrega un peligro a la ista
+    public void add_peligro(int x,int y){
+        peligro.put(x+","+y,new xypieza(x,y));
+    }
     
     public void analizar_peligro(){
         int x=this.getOrigeny();
         int y=this.getOrigenx();
         
+        peligro.clear();//limpiamos para ver el contenido
+        
         //PRIMERO SERA EL ANALISIS SI ES UN CABALLO QUIEN LO ACECHA
         if((x+1<=7)&&(y+2<=7)&&es_oponente_pieza(x+1,y+2,variable.BCABALLO))
-            peligro.put((x+1)+","+(y+2), new xypieza(x+1,y+2));
+            add_peligro(x+1,y+2);
        
         if((x+1<=7)&&(y-2>=0)&&es_oponente_pieza(x+1,y-2,variable.BCABALLO))
-            peligro.put((x+1)+","+(y-2), new xypieza(x+1,y-2));
+            add_peligro(x+1,y-2);
         
         if((x-1>=0)&&(y+2<=7)&&es_oponente_pieza(x-1,y+2,variable.BCABALLO))
-            peligro.put((x-1)+","+(y+2), new xypieza(x-1,y+2));
+            add_peligro(x-1,y+2);
         
         if((x-1>=0)&&(y-2>=0)&&es_oponente_pieza(x-1,y-2,variable.BCABALLO))
-            peligro.put((x-1)+","+(y-2), new xypieza(x-1,y-2));
+            add_peligro(x-1,y-2);
         
         if((x+2<=7)&&(y+1<=7)&&es_oponente_pieza(x+2,y+1,variable.BCABALLO))
-            peligro.put((x+2)+","+(y+1), new xypieza(x+2,y+1));
+            add_peligro(x+2,y+1);
         
         if((x+2<=7)&&(y-1>=0)&&es_oponente_pieza(x+2,y-1,variable.BCABALLO))
-            peligro.put((x+2)+","+(y-1), new xypieza(x+2,y-1));
+            add_peligro(x+2,y-1);
         
         if((x-2>=0)&&(y+1<=7)&&es_oponente_pieza(x-2,y+1,variable.BCABALLO))
-            peligro.put((x-2)+","+(y+1), new xypieza(x-2,y+1));
+            add_peligro(x-2,y+1);
         
         if((x-2>=0)&&(y-1>=0)&&es_oponente_pieza(x-2,y-1,variable.BCABALLO))
-            peligro.put((x-2)+","+(y-1), new xypieza(x-2,y-1));
+            add_peligro(x-2,y-1);
 
         
         //AHORA EL ANALISIS REINA TORRE
@@ -159,6 +165,16 @@ public class rey extends pieza{
         y=this.getOrigenx();
         x--;y--;
         while(x>=0&&y>=0){
+            
+            //Analisis Peon y Alfil en el primer paso
+            if(mi_color==1&&(this.getOrigeny()-x)==1&&(this.getOrigenx()-y)==1)
+            {
+               if(this.es_oponente_pieza(x, y, variable.BPEON)){
+                   this.add_peligro(x, y);
+                   break;
+               }
+            }
+            
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
                 break;
             x--;y--;
@@ -169,6 +185,16 @@ public class rey extends pieza{
         y=this.getOrigenx();
         x++;y--;
         while(x<=7&&y>=0){
+            
+            //Analisis Peon y Alfil en el primer paso
+            if(mi_color==-1&&(x-this.getOrigeny())==1&&(this.getOrigenx()-y)==1)
+            {
+               if(this.es_oponente_pieza(x, y, variable.BPEON)){
+                   this.add_peligro(x, y);
+                   break;
+               }
+            }
+            
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
                 break;
             x++;y--;
@@ -179,6 +205,15 @@ public class rey extends pieza{
         y=this.getOrigenx();
         x++;y++;
         while(x<=7&&y<=7){
+            //Analisis Peon y Alfil en el primer paso
+            if(mi_color==-1&&(x-this.getOrigeny())==1&&(y-this.getOrigenx())==1)
+            {
+               if(this.es_oponente_pieza(x, y, variable.BPEON)){
+                   this.add_peligro(x, y);
+                   break;
+               }
+            }
+            
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
                 break;
             x++;y++;
@@ -189,6 +224,16 @@ public class rey extends pieza{
         y=this.getOrigenx();
         x--;y++;
         while(x>=0&&y<=7){
+            
+            //Analisis Peon y Alfil en el primer paso
+            if(mi_color==1&&(this.getOrigeny()-x)==1&&(y-this.getOrigenx())==1)
+            {
+               if(this.es_oponente_pieza(x, y, variable.BPEON)){
+                   this.add_peligro(x, y);
+                   break;
+               }
+            }
+            
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
                 break;
             x--;y++;
@@ -200,6 +245,15 @@ public class rey extends pieza{
      public void PosiblesMovimientos(Integer[][] tablero) {
         this.ClearMov();
         this.matrix=tablero;
+        
+        
+        //Veamos el analisis primero 
+        
+        this.analizar_peligro();
+        
+        if(peligro.size()>0)
+            System.out.println("Hay peligro!!!!!!!! tamanio: "+peligro.size());
+        
 
         int x=this.getOrigeny();
         int y=this.getOrigenx();
