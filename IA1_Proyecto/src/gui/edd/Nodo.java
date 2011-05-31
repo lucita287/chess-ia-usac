@@ -115,10 +115,11 @@ public class Nodo<T> {
         return this.data;
     }
 
-    private void setData(T data) {
+    public void setData(T data) {
         this.data = data;
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{").append(getData().toString()).append(",[");

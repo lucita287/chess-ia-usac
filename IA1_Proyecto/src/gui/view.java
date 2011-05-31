@@ -329,7 +329,6 @@ public final class view extends javax.swing.JFrame {
     }
     
      public void Turno(){
-
          if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
@@ -341,13 +340,15 @@ public final class view extends javax.swing.JFrame {
             estado.setText(" Turno de: Negras");
             estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
             }
-        if((this.cpu)&&this.turno!=this.colorjugador1){
-            System.out.println("TURNO DE CPU");
-            tablero.GenerarArbol(0,turno, tablero.getTablero());
-            turno=!turno;
-        }
     }
 
+     public void Mover(){
+            if((this.cpu)&&this.turno!=this.colorjugador1){
+            System.out.println("TURNO DE CPU");
+            tablero.GenerarArbol(turno, tablero.getTablero());
+            turno=!turno;
+        }
+     }
 private void Dibujar(){
         DibujarPiezas();
         DibujarTablero();

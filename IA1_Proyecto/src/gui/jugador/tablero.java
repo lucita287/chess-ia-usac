@@ -5,6 +5,9 @@
 
 package gui.jugador;
 
+import gui.edd.Arbol;
+import gui.edd.Jugada;
+import gui.edd.Nodo;
 import gui.edd.Utilidad;
 import gui.resources.variable;
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ public class tablero {
 
     private Integer matriz[][];
     private int nturno;
-
+    private final int infinito=9999;
     public tablero(Integer [][] m) {
         matriz=new Integer[8][8];
         for(int i=0;i<m.length;i++){
@@ -65,22 +68,40 @@ public class tablero {
         }
     }
 
-    public void GenerarArbol(int r, boolean color, Integer [][]tablero){
+    public void GenerarArbol( boolean color, Integer [][]tablero){
+         Arbol<Jugada> t=new Arbol();
+         Nodo raiz=new Nodo();
+         Jugada inicio=new Jugada(color);
+         inicio.setRamificacion(0);
+         inicio.setAlfaBeta(-infinito, infinito);
+         raiz.setData(inicio);
+         GenerarHijos(1,color, tablero,raiz);
+         t.setRootElement(raiz);
+            for(int i=0;i<t.toList().size();i++){
+            Jugada j=t.toList().get(i).getData();
+                System.out.println("**RAMIFICACION: "+j.getRamificacion());
+                System.out.println("->PIEZA: "+j.getPieza());
+                System.out.println("->MOVER A: "+j.getY()+"-"+j.getX());
+         }
 
-            if(r<variable.PROFUNDIDAD_RAMIFICACION){
+    }
+
+    private void GenerarHijos(int r, boolean color, Integer [][]tablero, Nodo padre){
+
+            if(r<=variable.PROFUNDIDAD_RAMIFICACION){
                 tablero nuevo=new tablero(tablero);
                 ArrayList<xypieza> t=this.Piezas_de_Jugador(color);
                 for(int i=0;i<t.size();i++){
-                    nuevo.GenerarTablero(r, color, t.get(i).getPieza(), t.get(i).getX(), t.get(i).getY());
+                   nuevo.GenerarNodo(r, color, t.get(i).getPieza(), t.get(i).getX(), t.get(i).getY(), padre);
                 }
             }
     }
 
-    private void GenerarTablero(int r, boolean color, int pieza, int x, int y){
+    private void GenerarNodo(int r, boolean color, int pieza, int x, int y, Nodo padre){
             TreeMap a=this.GenerarMovimientos(pieza, y, x);
             if(a!=null){
                 if(a.size()!=0){
-                //System.out.println("---------------RAMIFICACION: "+(r+1)+"-----------------");
+                //System.out.println("---------------RAMIFICACION: "+(r)+"-----------------");
                 }
                 for (Iterator iterator=a.values().iterator();iterator.hasNext();) {
                     xypieza t=(xypieza)iterator.next();
@@ -91,11 +112,22 @@ public class tablero {
                     tablero nuevo=new tablero(matriz);
                     nuevo.Mover(y,x,t.getX(), t.getY());
                     //nuevo.Imprimir();
-                                if((r+1)<variable.PROFUNDIDAD_RAMIFICACION){
-                                    nuevo.GenerarArbol(r+1, !color, nuevo.getTablero());
+                     Nodo hijo=new Nodo();
+                     Jugada j=new Jugada(color);
+                     j.setPieza(pieza);
+                     j.setX(t.getY());
+                     j.setY(t.getX());
+                     j.setRamificacion(r);
+                     j.setTipo(color);
+
+                                if(!((r+1)<=variable.PROFUNDIDAD_RAMIFICACION)){
+                                     j.setId(new Utilidad(this.matriz).getUtilidad());
+                                     hijo.setData(j);
                                 }else{
-                                //System.out.println("Utilidad: "+new Utilidad(this.matriz).getUtilidad());
+                                    hijo.setData(j);
+                                    nuevo.GenerarHijos(r+1, !color, nuevo.getTablero(), hijo);
                                 }
+                     padre.addChild(hijo);
                 }
 
           }
