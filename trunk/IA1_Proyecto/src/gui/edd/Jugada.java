@@ -13,27 +13,55 @@ public class Jugada {
 
     private boolean Tipo;
     private int Id, Alfa, Beta;
-    private Integer Tablero[][];
+    private int pieza, x, y, ramificacion;
 
-    public Jugada(boolean Tipo, Integer[][] Tablero) {
+    public Jugada(boolean Tipo) {
         this.Tipo = Tipo;
-        this.Tablero = Tablero;
+    }
+
+    public int getPieza() {
+        return pieza;
+    }
+
+    public void setPieza(int pieza) {
+        this.pieza = pieza;
+    }
+
+    public int getRamificacion() {
+        return ramificacion;
+    }
+
+    public void setRamificacion(int ramificacion) {
+        this.ramificacion = ramificacion;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getAlfa() {
         return Alfa;
     }
 
-    public void setAlfa(int Alfa) {
+    public void setAlfaBeta(int Alfa,int Beta) {
+        this.Beta = Beta;
         this.Alfa = Alfa;
     }
 
     public int getBeta() {
         return Beta;
-    }
-
-    public void setBeta(int Beta) {
-        this.Beta = Beta;
     }
 
     public int getId() {
@@ -42,14 +70,6 @@ public class Jugada {
 
     public void setId(int Id) {
         this.Id = Id;
-    }
-
-    public Integer[][] getTablero() {
-        return Tablero;
-    }
-
-    public void setTablero(Integer[][] Tablero) {
-        this.Tablero = Tablero;
     }
 
     public boolean isTipo() {

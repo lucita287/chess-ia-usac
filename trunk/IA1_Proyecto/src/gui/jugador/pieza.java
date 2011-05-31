@@ -259,6 +259,17 @@ private boolean Mover(){
             origenx=x;
             origeny=y;           
             Actualizar();
+            if(!gui.turno){
+            gui.estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+            gui.estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
+            gui.estado.setText(" Turno de: Blancas");
+            gui.estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+            }else{
+            gui.estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+            gui.estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/npeon.png")));
+            gui.estado.setText(" Turno de: Negras");
+            gui.estado.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+            }
             return true;
             //Turno();
             //gui.tablero.Imprimir();
@@ -297,10 +308,6 @@ public void MoverXY(int letra, int numero){
         this.setOpaque(true);
         PosiblesMovimientos(gui.tablero.getTablero());
         mov=Mover();
-        /**if(mov){
-            mov=false;
-        this.Turno();
-        }**/
       }
 /**
  * Cuando se Extrae la Ficha
