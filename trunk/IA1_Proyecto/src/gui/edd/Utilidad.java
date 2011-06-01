@@ -31,6 +31,21 @@ public final class Utilidad {
     private int ntorres_mov=0, btorres_mov=0;
 
     public Utilidad(Integer[][] tablero) {
+        if(this.getRey_blancos()==0){
+            this.utilidad=-9999;
+        }else{
+            if(this.getRey_negros()==0){
+            this.utilidad=9999;
+            }else{
+                Calcular(tablero);
+            this.utilidad=this.UtilidadBlancas()*this.getRey_blancos()-this.UtilidadNegras()*this.getRey_negros();
+            }
+        }
+
+        //this.Ver();
+    }
+
+    private void Calcular(Integer[][] tablero){
         for(int i=0;i<tablero.length;i++){
         for(int j=0;j<tablero[i].length;j++){
             int t=tablero[i][j];
@@ -101,7 +116,7 @@ public final class Utilidad {
             Cada caballo propio suma 315 puntos
             Añadir entre 0 y 15 puntos si está cerca del centro del tablero (más cuanto más cerca del centro)
             Quitar entre 0 y 15 puntos si está lejos del centro (quitar más cuanto más lejos)
-             */         
+             */
             case variable.NCABALLO:
                if(((i==3)||(i==4))&&((j==3)||(j==4))){
                     this.ncaballo_centro+=15;
@@ -121,7 +136,7 @@ public final class Utilidad {
                     this.bcaballo_centro-=15;
                 }
                 }
-                
+
                 this.caballos_blancos++;
                 break;
 
@@ -148,7 +163,7 @@ public final class Utilidad {
                 if((i==0)||(i==7)||(j==0)||(j==7)){
                     this.bdama_centro-=10;
                 }}
-                
+
                 this.dama_blancos++;
                 break;
 
@@ -165,19 +180,7 @@ public final class Utilidad {
         }
         }
         }
-        if(this.getRey_blancos()==0){
-            this.utilidad=-9999;
-        }else{
-            if(this.getRey_negros()==0){
-            this.utilidad=9999;
-            }else{
-            this.utilidad=this.UtilidadBlancas()*this.getRey_blancos()-this.UtilidadNegras()*this.getRey_negros();
-            }
-        }
-        
-        //this.Ver();
     }
-
     private int UtilidadNegras(){
         int pts_pieza=this.getPeones_negros()+this.getAlfiles_negros()+this.getCaballos_negros()+this.getDama_negros()+this.getTorres_negros();
         pts_pieza+=this.getNpeon_avanzo()+this.getNpeon_centro(); //PEON

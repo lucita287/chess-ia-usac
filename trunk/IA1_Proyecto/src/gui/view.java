@@ -249,15 +249,15 @@ public final class view extends javax.swing.JFrame {
         System.out.println("# DE PIEZAS NEGRAS");
         jugador2.vivos.Ver();
          * **/
-        Object[] options = {"Si",
-                            "No"};
+        Object[] options = {"No",
+                            "Si"};
         int n = JOptionPane.showOptionDialog(null,
             "JAQUE MATE\n"
             +"Han Perdido las Piezas "+txt
             + "\n\nDesea Salirse del Juego?\n",
             "FIN DEL JUEGO!!!",
-            JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE,
+            JOptionPane.YES_NO_OPTION,
             null,     //do not use a custom Icon
             options,  //the titles of buttons
             options[0]); //default button title
