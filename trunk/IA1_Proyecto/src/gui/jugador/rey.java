@@ -117,6 +117,8 @@ public class rey extends pieza{
         {
             if(!this.pseudo_analisis(x,y,variable.BDAMA, variable.BTORRE))
                 break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
+                break;
             x--;   
         }
         
@@ -126,6 +128,8 @@ public class rey extends pieza{
         while(x<=7)
         {
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BTORRE))
+                break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
                 break;
             x++;   
         }
@@ -137,6 +141,8 @@ public class rey extends pieza{
         {
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BTORRE))
                 break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
+                break;
             y--;   
         }
         
@@ -146,6 +152,8 @@ public class rey extends pieza{
         while(y<=7)
         {
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BTORRE))
+                break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
                 break;
             y++;   
         }
@@ -169,6 +177,9 @@ public class rey extends pieza{
             
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
                 break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
+                break;
+
             x--;y--;
         }
         
@@ -189,6 +200,9 @@ public class rey extends pieza{
             
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
                 break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
+                break;
+
             x++;y--;
         }
 
@@ -207,6 +221,8 @@ public class rey extends pieza{
             }
             
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
+                break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
                 break;
             x++;y++;
         }
@@ -228,6 +244,9 @@ public class rey extends pieza{
             
             if(!this.pseudo_analisis(x, y, variable.BDAMA, variable.BALFIL))
                 break;
+            else if(matrix[x][y]!=0)//o es amigo u enemigo, pero el enemigo no me afecta
+                break;
+
             x--;y++;
         }
         
