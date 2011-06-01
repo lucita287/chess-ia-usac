@@ -8,7 +8,6 @@ package gui;
 import gui.resources.lookandfeel;
 import gui.resources.variable;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 /**
  *

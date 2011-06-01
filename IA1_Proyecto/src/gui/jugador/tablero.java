@@ -205,4 +205,5 @@ public class tablero {
     public int Utilidad(){
         return new Utilidad(this.matriz).getUtilidad();
     }
+
 }
