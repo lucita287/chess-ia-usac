@@ -82,6 +82,7 @@ public class rey extends pieza{
         int y=this.getOrigenx();
         this.matrix=matriz;
         ClearPeligro();//limpiamos para ver el contenido
+        System.out.println(mi_color+" "+x+"--"+y);
         
         //PRIMERO SERA EL ANALISIS SI ES UN CABALLO QUIEN LO ACECHA
         if((x+1<=7)&&(y+2<=7)&&es_oponente_pieza(x+1,y+2,variable.BCABALLO))

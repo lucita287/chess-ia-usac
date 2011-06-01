@@ -73,7 +73,7 @@ public class pieza extends JLabel{
      * Agrega un peligro a la lista
      */
     public void Add_peligro(int x,int y){
-        //System.out.println("Ataca **"+x+","+y+"**");
+        System.out.println("Ataca **"+x+","+y+"**");
         peligro.put(x+","+y,new xypieza(x,y));
     }
 
