@@ -73,7 +73,7 @@ public class pieza extends JLabel{
      * Agrega un peligro a la lista
      */
     public void Add_peligro(int x,int y){
-        System.out.println("Ataca **"+x+","+y+"**");
+        //System.out.println("Ataca **"+x+","+y+"**");
         peligro.put(x+","+y,new xypieza(x,y));
     }
 
@@ -311,21 +311,6 @@ private boolean IsMovimientoNoPeligroso(Integer[][] m){
                 return true;
             else
                 return false;
-
-
-          /**  if(this.isColor()){
-            gui.jugador1.getRey().analizar_peligro(m);
-            if(gui.jugador1.getRey().getPeligro().size()==0){
-                return true;
-            }
-            }else{
-            gui.jugador2.getRey().analizar_peligro(m);
-            if(gui.jugador2.getRey().getPeligro().size()==0){
-                return true;
-            }
-            }**/
-    
-
 }
 
 /**
@@ -416,7 +401,9 @@ public void MoverXY(int letra, int numero){
         origeny=this.getY()/variable.ALTO;
 
         this.getParent().setComponentZOrder(this, 1);
- 
+        if(evt.getButton()==MouseEvent.BUTTON3){
+            gui.tablero.Imprimir();
+        }
         /**
         if(this.isColor()){
         gui.tablero.test(0,this.pieza,origeny,origenx);
