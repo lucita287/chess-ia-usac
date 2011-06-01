@@ -46,6 +46,7 @@ public final class view extends javax.swing.JFrame {
         
         Dibujar();
         Turno();
+        //this.setMaximumSize(this.getMaximumSize());
     }      
 
     /** This method is called from within the constructor to
@@ -84,7 +85,9 @@ public final class view extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ajedrez");
         setBounds(new java.awt.Rectangle(75, 100, 640, 640));
+        setLocationByPlatform(true);
         setResizable(false);
+        setUndecorated(true);
 
         tablero_principal.setBorder(null);
         tablero_principal.setEnabled(false);
@@ -94,7 +97,7 @@ public final class view extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
 
-        estado.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        estado.setFont(new java.awt.Font("Tahoma", 1, 24));
         estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png"))); // NOI18N
         estado.setText("Turno de: Blancas");
@@ -149,7 +152,7 @@ public final class view extends javax.swing.JFrame {
         });
         jSplitPane4.setTopComponent(consola);
 
-        estado1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        estado1.setFont(new java.awt.Font("Tahoma", 1, 24));
         estado1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         estado1.setText("Piezas Muertas");
         estado1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -266,6 +269,7 @@ public final class view extends javax.swing.JFrame {
     }
 
     public void Reiniciar(){
+        turno=true;
         fondo=new JLabel[8][8];
         muertan=new JLabel[4][4];
         muertab=new JLabel[4][4];
@@ -357,7 +361,7 @@ private void Dibujar(){
         mnegras.updateUI();
         mblancas.updateUI();
         this.repaint();
-        tablero.Imprimir();
+        //tablero.Imprimir();
 }
 /**
  * Metodo que dibuja las Piezas del:

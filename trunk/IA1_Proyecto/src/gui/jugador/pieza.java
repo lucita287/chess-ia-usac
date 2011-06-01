@@ -7,7 +7,6 @@ package gui.jugador;
 
 import gui.resources.variable;
 import gui.view;
-import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.util.TreeMap;
 import javax.swing.Icon;
@@ -34,6 +33,9 @@ public class pieza extends JLabel{
     private TreeMap movimientos= new TreeMap();
     private boolean mov = false;
 
+    //Guarda los peligros, o entes que lo acechan
+    private TreeMap peligro = new TreeMap();
+    
     public pieza() {
     }
 
@@ -52,6 +54,38 @@ public class pieza extends JLabel{
         return false;
     }
 
+    /**
+ * Agrega el Movimiento X,Y al Arbol de Casillas a donde se puede mover
+ * @return
+ */
+    public void AddMov(int x, int y) {
+            movimientos.put(x +","+ y, new xypieza(x, y));
+    }
+
+/**
+ * Limpia los Movimientos Posibles Anteriores
+ */
+    public void ClearMov() {
+        movimientos.clear();
+    }
+
+    /**
+     * Agrega un peligro a la lista
+     */
+    public void Add_peligro(int x,int y){
+        System.out.println("Ataca **"+x+","+y+"**");
+        peligro.put(x+","+y,new xypieza(x,y));
+    }
+
+ /**
+ * Limpia los Movimientos anteriores que ponen en Peligro al Rey
+ */
+    public void ClearPeligro() {
+        peligro.clear();
+    }
+    public TreeMap getPeligro() {
+        return peligro;
+    }
     //hace el calculo e indica si debe continuar o no
     public boolean calculo(int x_,int y_){
             if(matrix[x_][y_]==0)//espacio libre, puede avanzar
@@ -196,7 +230,7 @@ public class pieza extends JLabel{
     }
 
  /**
- *
+ *Evento cuando el mouse se sale de la Pieza
  * @param evt
  */
 private void Exited(java.awt.event.MouseEvent evt) {
@@ -209,7 +243,7 @@ private void Exited(java.awt.event.MouseEvent evt) {
 
 }
 /**
- *
+ *Evento cuando el mouse se acerca a la pieza
  * @param evt
  */
     private void Entered(MouseEvent evt) {
@@ -220,10 +254,14 @@ private void Exited(java.awt.event.MouseEvent evt) {
       }
 
 
-
-
+/** Calcula que movimientos son posibles para la piezaa traves del tablero actual
+ *
+ * @param matriz
+ */
 public void PosiblesMovimientos(Integer[][] matriz){
+      
 
+     
 }
 /**
  * Regresa la Pieza al Origen
@@ -247,11 +285,55 @@ private void Turno(){
           gui.Turno();
 }
 
+
+/**Verifica que movimientos es posible para la pieza traves del tablero futuro, sin poner en peligro al rey
+ *
+ * @param tablero
+ */
+private boolean IsMovimientoNoPeligroso(Integer[][] m){
+            int tx, ty;
+            if(pieza==variable.BREY){
+                tx=x;
+                ty=y;
+            }else{
+                 if(this.isColor()){
+                    tx=gui.jugador1.getRey().getOrigenx();
+                    ty=gui.jugador1.getRey().getOrigeny();
+                 }else{
+                    tx=gui.jugador2.getRey().getOrigenx();
+                    ty=gui.jugador2.getRey().getOrigeny();
+                 }
+            }
+            Integer[][] t=GeneraTablero(m, mi_color*pieza, origeny, origenx, y, x);
+            rey r=new rey(mi_color,tx,ty);
+            r.analizar_peligro(t);
+            if(r.getPeligro().size()==0)
+                return true;
+            else
+                return false;
+
+
+          /**  if(this.isColor()){
+            gui.jugador1.getRey().analizar_peligro(m);
+            if(gui.jugador1.getRey().getPeligro().size()==0){
+                return true;
+            }
+            }else{
+            gui.jugador2.getRey().analizar_peligro(m);
+            if(gui.jugador2.getRey().getPeligro().size()==0){
+                return true;
+            }
+            }**/
+    
+
+}
+
 /**
  * Mueve la Pieza a una posicion que sea Valida
  */
 private boolean Mover(){
-        if(IsMovimientoValido()){
+               
+       if(IsMovimientoValido()){
             this.setOpaque(!variable.FONDO);
             System.out.println(((char)getLetra())+"-"+getNumero());
             this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
@@ -281,7 +363,7 @@ private boolean Mover(){
 }
 
 /**
- * Mueve la Pieza a una posicion que sea Valida
+ * Mueve la Pieza a una posicion que sea Valida a traves del teclado
  */
 public void MoverXY(int letra, int numero){
         x=letra-65;
@@ -296,7 +378,7 @@ public void MoverXY(int letra, int numero){
         //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
 }
 /**
- *
+ *Evento cuando se suelta la pieza
  * @param evt
  */
     private void Released(MouseEvent evt) {
@@ -310,14 +392,14 @@ public void MoverXY(int letra, int numero){
         mov=Mover();
       }
 /**
- * Cuando se Extrae la Ficha
+ * Cuando se Extrae la Pieza
  * @param evt
  */
     private void Dragged(MouseEvent evt) {
         int s1=evt.getX()+this.getX();
         int s2=evt.getY()+this.getY();
-          this.setLocation(s1-variable.PIEZA_ANCHO/2,s2-variable.PIEZA_ALTO/2);
-          //this.setLocation(s1,s2); //MOUSE CENTRO
+          this.setLocation(s1-variable.PIEZA_ANCHO/2,s2-variable.PIEZA_ALTO/2);//MOUSE CENTRO
+          //this.setLocation(s1,s2); //MOUSE NORMAL
           setBackground(variable.COLOR);
           this.setOpaque(variable.FONDO);
       }
@@ -387,18 +469,7 @@ public void MoverXY(int letra, int numero){
     public int getOrigeny() {
         return origeny;
     }
-/**
- * 
- * @return
- */
-    public void AddMov(int x, int y) {
-        //System.out.println("**>"+x+"-"+y);
-        movimientos.put(x+","+y, new xypieza(x,y));
-    }
 
-    public void ClearMov() {
-        movimientos.clear();
-    }
  /**
  *
  * @param casillax
@@ -454,30 +525,63 @@ public void MoverXY(int letra, int numero){
         return nombre;
     }
 
+    /**Verifica si es un Movimiento Valido
+     *
+     * @return
+     */
     private boolean IsMovimientoValido() {
-
+        if(IsMovimientoNoPeligroso(this.matrix)){
         if(movimientos.containsKey(y+","+x)){
-            if(gui.turno){
+                if(gui.turno){
                     gui.jugador2.IsPieza(x, y);
-                    return true;
                 }else{
                     gui.jugador1.IsPieza(x, y);
-                    return true;
                 }
-        }else{
+                return true;
+        }}
             return false;
-        }
+
     }
 
+    /**Devuelve un Arbol de Movimientos posibles para la Pieza
+     *
+     * @param tablero
+     * @return
+     */
     public TreeMap getMovimientos(Integer[][] tablero) {
         this.PosiblesMovimientos(tablero);
         return movimientos;
     }
+    
+    public TreeMap getMovimientos() {
+        return movimientos;
+    }
 
+    /**
+     * Cuenta el # de Movimientos posibles que tiene la pieza
+     *
+     * @param tablero
+     * @return
+     */
     public int ContarMovimientos(Integer[][] tablero) {
         this.PosiblesMovimientos(tablero);
         return movimientos.size();
     }
-
-   
+/**
+ * Genera un Tablero en base al tablero actual, a la pieza ox, oy que se desea mover a dx, dy.
+ *
+ * @param matriz
+ * @param pieza
+ * @param oy
+ * @param ox
+ * @param dy
+ * @param dx
+ * @return
+ */
+    public Integer[][] GeneraTablero(Integer[][] matriz, int pieza, int oy, int ox, int dy, int dx){
+                    tablero nuevo=new tablero(matriz);
+                    nuevo.Mover(oy,ox,dy, dx);
+                    //nuevo.Imprimir();
+                    return nuevo.getTablero();
+    }
 }

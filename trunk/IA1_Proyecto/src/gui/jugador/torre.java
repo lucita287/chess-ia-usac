@@ -27,17 +27,17 @@ public class torre extends pieza{
             mi_color=-1;
    }
 
-    public torre(int color, int x, int y) {
+  public torre(int color, int x, int y) {
         mi_color=color;
         this.setOrigenx(x);
         this.setOrigeny(y);
     }
 
     @Override
-   public void PosiblesMovimientos(Integer[][] tablero) {
+public void PosiblesMovimientos(Integer[][] matriz){
         this.ClearMov();
-        this.matrix=tablero;
-
+        this.matrix=matriz;
+        
         int x_=this.getOrigeny();
         int y_=this.getOrigenx();
 
@@ -77,6 +77,6 @@ public class torre extends pieza{
                 break;
             y_--;
         }
+  }
 
-   }
 }
