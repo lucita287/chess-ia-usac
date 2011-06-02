@@ -31,7 +31,7 @@ public class pieza extends JLabel{
     private int pieza;
     public view gui;
     private TreeMap movimientos= new TreeMap();
-    private boolean mov = false;
+    public boolean mov = false;
 
     //Guarda los peligros, o entes que lo acechan
     private TreeMap peligro = new TreeMap();
@@ -376,6 +376,11 @@ public void MoverXY(int x, int y){
         PosiblesMovimientos(gui.tablero.getTablero());
 
         mov=Mover();
+        if(mov){
+            gui.turno=!gui.turno;
+        }else{
+            Turno();
+        }
         //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
 }
 /**

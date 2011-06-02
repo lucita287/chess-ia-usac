@@ -374,7 +374,8 @@ public final class view extends javax.swing.JFrame {
             }else{
                 jugador2.MoverXY(-a.getPieza(), a.getOx(), a.getOy(), a.getX(), a.getY());
             }
-            turno=!turno;
+
+            //turno=!turno;
         }
      }
 private void Dibujar(){
