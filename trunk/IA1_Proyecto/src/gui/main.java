@@ -34,7 +34,7 @@ public class main {
 
             SwingUtilities.invokeLater(new Runnable() {
               public void run() {
-               new view(variable.HUMANOVRSHUMANO,variable.NEGRA).setVisible(true);
+               new view(variable.CPUVRSHUMANO,variable.BLANCA).setVisible(true);
               }
             });
     

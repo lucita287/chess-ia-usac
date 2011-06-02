@@ -31,13 +31,13 @@ public final class Utilidad {
     private int ntorres_mov=0, btorres_mov=0;
 
     public Utilidad(Integer[][] tablero) {
+        Calcular(tablero);
         if(this.getRey_blancos()==0){
             this.utilidad=-9999;
         }else{
             if(this.getRey_negros()==0){
             this.utilidad=9999;
             }else{
-                Calcular(tablero);
             this.utilidad=this.UtilidadBlancas()*this.getRey_blancos()-this.UtilidadNegras()*this.getRey_negros();
             }
         }
@@ -303,7 +303,7 @@ public final class Utilidad {
         return ntorres_mov;
     }
 
-   
+  
     public void Ver(){
         System.out.println("**UTILIDAD NEGRAS: "+this.UtilidadNegras());
         //System.out.println("PEON CENTRO+AVANZO: "+(this.getNpeon_avanzo()+this.getNpeon_centro()));

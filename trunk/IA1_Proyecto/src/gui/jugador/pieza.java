@@ -350,7 +350,7 @@ private boolean Mover(){
 /**
  * Mueve la Pieza a una posicion que sea Valida a traves del teclado
  */
-public void MoverXY(int letra, int numero){
+public void MoverXY(char letra, int numero){
         x=letra-65;
         y=numero-1;
         casillax=x;
@@ -359,6 +359,22 @@ public void MoverXY(int letra, int numero){
         this.setOpaque(true);
         PosiblesMovimientos(gui.tablero.getTablero());
         
+        mov=Mover();
+        //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
+}
+
+/**
+ * Mueve la Pieza a una posicion que sea Valida a traves del teclado
+ */
+public void MoverXY(int x, int y){
+        this.x=x;
+        this.y=y;
+        casillax=x;
+        casillay=y;
+        setBackground(variable.COLOR);
+        this.setOpaque(true);
+        PosiblesMovimientos(gui.tablero.getTablero());
+
         mov=Mover();
         //this.setLocation(x*variable.ANCHO+variable.DP_ANCHO, y*variable.ALTO+variable.DP_ALTO);
 }
@@ -403,6 +419,9 @@ public void MoverXY(int letra, int numero){
         this.getParent().setComponentZOrder(this, 1);
         if(evt.getButton()==MouseEvent.BUTTON3){
             gui.tablero.Imprimir();
+        }
+        if(evt.getButton()==MouseEvent.BUTTON2){
+            Turno();
         }
         /**
         if(this.isColor()){

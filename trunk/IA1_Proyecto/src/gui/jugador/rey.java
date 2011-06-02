@@ -71,7 +71,8 @@ public class rey extends pieza{
                 Add_peligro(x,y);
                 return false;
         }
-        else if(es_aliado(x,y))
+        else
+            if(es_aliado(x,y))
                 return false;
         return true;
     }
@@ -82,7 +83,7 @@ public class rey extends pieza{
         int y=this.getOrigenx();
         this.matrix=matriz;
         ClearPeligro();//limpiamos para ver el contenido
-        System.out.println(mi_color+" "+x+"--"+y);
+        //System.out.println(mi_color+" "+x+"--"+y);
         
         //PRIMERO SERA EL ANALISIS SI ES UN CABALLO QUIEN LO ACECHA
         if((x+1<=7)&&(y+2<=7)&&es_oponente_pieza(x+1,y+2,variable.BCABALLO))
@@ -109,7 +110,8 @@ public class rey extends pieza{
         if((x-2>=0)&&(y-1>=0)&&es_oponente_pieza(x-2,y-1,variable.BCABALLO))
             Add_peligro(x-2,y-1);
 
-        
+        /** REVISAR TIENE PROBLEMAS CON PASAR SOBRE LAS PIEZAS AMIGAS
+         * 
         //AHORA EL ANALISIS REINA TORRE
         //arriba
         x--;
@@ -157,7 +159,7 @@ public class rey extends pieza{
                 break;
             y++;   
         }
-        
+        **/
         //ahora vamos con los diagonales
         
         //Diagonal arriba izquierda
