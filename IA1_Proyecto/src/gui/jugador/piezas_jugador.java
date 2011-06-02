@@ -109,6 +109,56 @@ public final class piezas_jugador {
         gui.tablero.setTablero(tablero);
     }
 
+public void MoverXY(int pieza, int ox, int oy,int x, int y){
+     switch(pieza){
+
+            case variable.BPEON:
+            for(int i=0;i<8;i++){
+                if((this.getPeon()[i].getOrigenx()==ox)&&((this.getPeon()[i].getOrigeny()==oy))){
+                    this.getPeon()[i].MoverXY(x, y);
+                    return;
+                }
+            }
+            break;
+
+            case variable.BTORRE:
+            for(int i=0;i<2;i++){
+                if((this.getTorre()[i].getOrigenx()==ox)&&((this.getTorre()[i].getOrigeny()==oy))){
+                    this.getTorre()[i].MoverXY(x, y);
+                    return;
+                }
+            }
+            break;
+
+            case variable.BALFIL:
+            for(int i=0;i<2;i++){
+                if((this.getAlfil()[i].getOrigenx()==ox)&&((this.getAlfil()[i].getOrigeny()==oy))){
+                    this.getAlfil()[i].MoverXY(x, y);
+                    return;
+                }
+            }
+            break;
+
+            case variable.BCABALLO:
+            for(int i=0;i<2;i++){
+                if((this.getCaballo()[i].getOrigenx()==ox)&&((this.getCaballo()[i].getOrigeny()==oy))){
+                    this.getCaballo()[i].MoverXY(x, y);
+                    return;
+                }
+            }
+            break;
+
+            case variable.BDAMA:
+                this.getReina().MoverXY(x, y);
+                break;
+            case variable.BREY:
+                this.getRey().MoverXY(x, y);
+                break;
+            default:
+                return;
+
+        }
+}
     /**
      *  LETRA DE PIEZAS
      *  Rey = R
@@ -269,6 +319,9 @@ public void IsPieza(int x, int y){
         
 }
 
+public void Clear(){
+
+}
  public String ColorFicha(){
     if(this.color){
     return "Blancas";

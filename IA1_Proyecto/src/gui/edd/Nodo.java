@@ -18,7 +18,7 @@ import java.util.List;
  * can be thought of as instrumentation to determine the location of the type T
  * in the Tree<T>.
  */
-public class Nodo<T> {
+public final class Nodo<T> {
 
     public T data;
     public List<Nodo<T>> children;

@@ -11,10 +11,12 @@
 
 package gui;
 
+import gui.edd.Jugada;
 import gui.jugador.piezas_jugador;
 import gui.jugador.tablero;
 import gui.resources.image_drive;
 import gui.resources.variable;
+import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.Icon;
@@ -97,7 +99,7 @@ public final class view extends javax.swing.JFrame {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
 
-        estado.setFont(new java.awt.Font("Tahoma", 1, 24));
+        estado.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         estado.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png"))); // NOI18N
         estado.setText("Turno de: Blancas");
@@ -107,6 +109,11 @@ public final class view extends javax.swing.JFrame {
         estado.setMinimumSize(new java.awt.Dimension(100, 35));
         estado.setOpaque(true);
         estado.setPreferredSize(new java.awt.Dimension(640, 35));
+        estado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                estadoMousePressed(evt);
+            }
+        });
         jSplitPane1.setTopComponent(estado);
 
         split1.setBorder(null);
@@ -256,13 +263,13 @@ public final class view extends javax.swing.JFrame {
             +"Han Perdido las Piezas "+txt
             + "\n\nDesea Salirse del Juego?\n",
             "FIN DEL JUEGO!!!",
-            JOptionPane.QUESTION_MESSAGE,
             JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE,
             null,     //do not use a custom Icon
             options,  //the titles of buttons
             options[0]); //default button title
 
-        if(n==0){
+        if(n==1){
             System.exit(1);
         }
         fin=true;
@@ -315,8 +322,20 @@ public final class view extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_consolaKeyPressed
 
+    private void estadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estadoMousePressed
+       if(evt.getButton()==MouseEvent.BUTTON2){
+           tablero.GenerarArbol(turno, tablero.getTablero());
+       }        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoMousePressed
+
     public void Comando(String a){
- 
+         if(a.startsWith(".")){
+            if(turno){
+                jugador1.MoverXY((a.charAt(1)-48), (a.charAt(2)-48), (a.charAt(3)-48), (a.charAt(4)-48), (a.charAt(5)-48));
+            }else{
+                jugador2.MoverXY((a.charAt(1)-48), (a.charAt(2)-48), (a.charAt(3)-48), (a.charAt(4)-48), (a.charAt(5)-48));
+            }
+         }else{
          if(a.length()>4){
                 consola.setText("ERROR!!!");
                 consola.selectAll();
@@ -328,11 +347,12 @@ public final class view extends javax.swing.JFrame {
             }            
             }
 
-     
+        }
          consola.setText("");
     }
     
      public void Turno(){
+         Mover();
          if(turno){
             estado.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
             estado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/resources/image/bpeon.png")));
@@ -348,8 +368,12 @@ public final class view extends javax.swing.JFrame {
 
      public void Mover(){
             if((this.cpu)&&this.turno!=this.colorjugador1){
-            System.out.println("TURNO DE CPU");
-            tablero.GenerarArbol(turno, tablero.getTablero());
+            Jugada a=tablero.GenerarArbol(turno, tablero.getTablero());
+            if(turno){
+                jugador1.MoverXY(a.getPieza(), a.getOx(), a.getOy(), a.getX(), a.getY());
+            }else{
+                jugador2.MoverXY(-a.getPieza(), a.getOx(), a.getOy(), a.getX(), a.getY());
+            }
             turno=!turno;
         }
      }
@@ -440,6 +464,7 @@ private void DibujarTablero(){
             numeros.add(n);
         }
     }
+
 
 public void AgregarMuerto(boolean color, Icon pieza){
 
