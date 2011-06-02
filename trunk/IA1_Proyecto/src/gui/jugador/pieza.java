@@ -194,12 +194,14 @@ public class pieza extends JLabel{
                 if(!gui.fin)
                 if(gui.turno==color)
                 if(!mov)
+                //if(!((gui.cpu)&&(gui.turno!=gui.colorjugador1)))
                 Entered(evt);
             }
             @Override
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 if(!gui.fin)
                 if(gui.turno==color)
+                //if(!((gui.cpu)&&(gui.turno!=gui.colorjugador1)))
                 Exited(evt);
             }
             @Override
@@ -207,6 +209,7 @@ public class pieza extends JLabel{
                 if(!gui.fin)
                 if(gui.turno==color)
                 if(!mov)
+                //if(!((gui.cpu)&&(gui.turno!=gui.colorjugador1)))
                 Pressed(evt);
             }
             @Override
@@ -214,6 +217,7 @@ public class pieza extends JLabel{
                 if(!gui.fin)
                 if(gui.turno==color)
                 if(!mov)
+                //if(!((gui.cpu)&&(gui.turno!=gui.colorjugador1)))
                 Released(evt);
             }
         });

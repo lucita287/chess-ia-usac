@@ -100,7 +100,7 @@ public class tablero {
                 }
         }**/
          inicio=(Jugada) raiz.getData();
-         //inicio.Ver();
+         inicio.Ver();
          Tiempo();
          if(color){
             return Resultado(raiz,inicio.getAlfa());
@@ -112,16 +112,29 @@ public class tablero {
     }
 
     private Jugada Resultado(Nodo raiz, int utilidad){
-
+        Jugada posible=null;
         for(int i=0;i<raiz.getNumberOfChildren();i++){
             Jugada r=((Jugada)((Nodo)raiz.getChildren().get(i)).getData());
             if(r.getId()==utilidad){
                 r.Ver();
                 return r;
             }
-        }
+            if(r.isTipo()){
+                if(utilidad<r.getId()){
+                    posible=r;
+                }
+            }else{
+                if(utilidad>r.getId()){
+                    posible=r;
+                }
+            }
 
-        return (Jugada) raiz.getData();
+        }
+        if(posible!=null){
+        return posible;
+        }else{
+         return (Jugada) raiz.getData();
+        }
     }
     private void Tiempo(){
         Calendar calendario = new GregorianCalendar();
