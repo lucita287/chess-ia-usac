@@ -87,7 +87,7 @@ public class tablero {
          inicio.setRamificacion(0);
          inicio.setAlfaBeta(-infinito, infinito);
          raiz.setData(inicio);
-         GenerarHijos(1,color, tablero,raiz, -infinito, infinito); //Invocamos al Metodo que generar los hijos del arbol a partir de una raiz(tablero inicial)
+         GenerarHijos(1,color, tablero,raiz); //Invocamos al Metodo que generar los hijos del arbol a partir de una raiz(tablero inicial)
          t.setRootElement(raiz);
             /**for(int i=0;i<t.toList().size();i++){
             Jugada j=t.toList().get(i).getData();
@@ -100,14 +100,15 @@ public class tablero {
                 }
         }**/
          inicio=(Jugada) raiz.getData();
-         inicio.Ver();
-         /**if(color){
-            Resultado(raiz,inicio.getAlfa()).Ver();
+         //inicio.Ver();
+         Tiempo();
+         if(color){
+            return Resultado(raiz,inicio.getAlfa());
         }else{
-            Resultado(raiz,inicio.getBeta()).Ver();
-        }**/
-            Tiempo();
-            return inicio;
+            return Resultado(raiz,inicio.getBeta());
+        }
+            
+            //return inicio;
     }
 
     private Jugada Resultado(Nodo raiz, int utilidad){
@@ -115,9 +116,11 @@ public class tablero {
         for(int i=0;i<raiz.getNumberOfChildren();i++){
             Jugada r=((Jugada)((Nodo)raiz.getChildren().get(i)).getData());
             if(r.getId()==utilidad){
+                r.Ver();
                 return r;
             }
         }
+
         return (Jugada) raiz.getData();
     }
     private void Tiempo(){
@@ -128,7 +131,7 @@ public class tablero {
         segundos = calendario.get(Calendar.SECOND);
         System.out.println(hora + ":" + minutos + ":" + segundos);
     }
-    private void GenerarHijos(int r, boolean color, Integer [][]tablero, Nodo padre, int alfa, int beta){
+    private void GenerarHijos(int r, boolean color, Integer [][]tablero, Nodo padre){
 
                 ArrayList<xypieza> xyp=this.Piezas_de_Jugador(color);
                 if(xyp!=null){
@@ -163,26 +166,43 @@ public class tablero {
                                              j.setId(id);
                                              hijo.setData(j);
                                              padre.addChild(hijo);
-                                             if(MinMaxPoda(color,(Jugada)padre.getData(),(Jugada)hijo.getData())){
+                                             if(color){
+                                             if(MinPoda((Jugada)padre.getData(),(Jugada)hijo.getData())){
                                                  break;
                                              }
+                                            }else{
+                                              if(MaxPoda((Jugada)padre.getData(),(Jugada)hijo.getData())){
+                                                 break;
+                                             }
+                                            }
                                   }else{
                                             hijo.setData(j);
-                                            GenerarHijos(r+1, !color, nuevo.getTablero(), hijo, alfa, beta);
+                                            nuevo.GenerarHijos(r+1, !color, nuevo.getTablero(), hijo);
                                             padre.addChild(hijo);
-                                                    if(MinMaxPoda(color,(Jugada)padre.getData(),(Jugada)hijo.getData())){
-                                                     break;
-                                                    }
+                                             if(color){
+                                             if(MinPoda((Jugada)padre.getData(),(Jugada)hijo.getData())){
+                                                 break;
+                                             }
+                                            }else{
+                                              if(MaxPoda((Jugada)padre.getData(),(Jugada)hijo.getData())){
+                                                 break;
+                                             }
                                                 
-                                            
+                                      }
                                   }
                              }else{
                                             j.setId(id);
                                              hijo.setData(j);
                                              padre.addChild(hijo);
-                                             if(MinMaxPoda(color,(Jugada)padre.getData(),(Jugada)hijo.getData())){
+                                             if(color){
+                                             if(MinPoda((Jugada)padre.getData(),(Jugada)hijo.getData())){
                                                  break;
                                              }
+                                            }else{
+                                              if(MaxPoda((Jugada)padre.getData(),(Jugada)hijo.getData())){
+                                                 break;
+                                             }
+                                 }
                              }
                                  
                              
@@ -191,36 +211,38 @@ public class tablero {
                     }
         }
     }
+ public boolean MinPoda(Jugada padre, Jugada hijo){
 
-    public boolean MinMaxPoda(boolean MaxMin, Jugada padre, Jugada hijo){
-        if(MaxMin){
-            if(hijo.getId()>=padre.getBeta()){
-                return true;
-            }else{
-                if(hijo.getId()>padre.getAlfa()){
-                padre.setAlfa(hijo.getId());
-                }
-                padre.setXY(hijo.getX(),hijo.getY());
-                padre.setOXY(hijo.getOx(),hijo.getOy());
-                padre.setPieza(hijo.getPieza());
-                padre.setId(hijo.getAlfa());
-                return false;
-            }
-        }else{
             if(hijo.getId()<=padre.getAlfa()){
                 return true;
             }else{
                 if(hijo.getId()<padre.getBeta()){
                 padre.setBeta(hijo.getId());
                 }
-                padre.setXY(hijo.getX(),hijo.getY());
-                padre.setOXY(hijo.getOx(),hijo.getOy());
-                padre.setPieza(hijo.getPieza());
+                //padre.setXY(hijo.getX(),hijo.getY());
+                //padre.setOXY(hijo.getOx(),hijo.getOy());
+                //padre.setPieza(hijo.getPieza());
                 padre.setId(hijo.getBeta());
                 return false;
             }
-        }
+
     }
+
+    public boolean MaxPoda(Jugada padre, Jugada hijo){
+            if(hijo.getId()<=padre.getAlfa()){
+                return true;
+            }else{
+                if(hijo.getId()<padre.getBeta()){
+                padre.setBeta(hijo.getId());
+                }
+                //padre.setXY(hijo.getX(),hijo.getY());
+                //padre.setOXY(hijo.getOx(),hijo.getOy());
+                //padre.setPieza(hijo.getPieza());
+                padre.setId(hijo.getBeta());
+                return false;
+            }
+    }
+
     public void Print(ArrayList<xypieza> piezas){
 
         for(int i=0;i<piezas.size();i++){
@@ -275,7 +297,7 @@ public class tablero {
     private ArrayList<xypieza> Piezas_de_Jugador(boolean color){
         ArrayList<xypieza> piezas=new ArrayList();
         boolean hayrey=false;
-        for(int i=0;i<matriz.length;i++){
+        for(int i=matriz.length-1;-1<i;i--){
             for(int j=0;j<matriz[i].length;j++){
                 int temp=matriz[i][j];
                 if((temp>0)&&color){
